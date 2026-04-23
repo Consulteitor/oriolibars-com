@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter+Tight:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:wght@300..700&display=swap">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oriol Ibars — Diagnóstico Estratégico Digital</title>
+<meta name="description" content="25 años optimizando funnels digitales. Auditoría estratégica de conversión.">
+
+<style>/* vietnamese */
+
+/* latin-ext */
+
+/* latin */
+
+/* cyrillic-ext */
+
+/* cyrillic */
+
+/* greek-ext */
+
+/* greek */
+
+/* vietnamese */
+
+/* latin-ext */
+
+/* latin */
+
+/* cyrillic-ext */
+
+/* cyrillic */
+
+/* greek */
+
+/* vietnamese */
+
+/* latin-ext */
+
+/* latin */
+
+</style>
+
+<style>
+/* =========================================================
+   Oriol Ibars — one-pager tipográfico
+   ========================================================= */
+
+:root {
+  /* tokens */
+  --paper: #F2EEE6;
+  --ink:   #0E0D0B;
+  --ink-2: #1A1815;
+  --dim:   #8A8477;
+  --rule:  rgba(14,13,11,.16);
+  --rule-strong: rgba(14,13,11,.5);
+  --accent: #FF5B14;
+
+  --font-display: 'Fraunces', 'Times New Roman', serif;
+  --font-sans: 'Inter Tight', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --maxw: 1440px;
+  --pad-x: clamp(20px, 4vw, 64px);
+
+  /* fluid sizes */
+  --fs-hero:    clamp(56px, 14vw, 220px);
+  --fs-huge:    clamp(48px, 11vw, 168px);
+  --fs-xl:      clamp(40px, 8vw, 128px);
+  --fs-lg:      clamp(30px, 5vw, 72px);
+  --fs-md:      clamp(22px, 2.6vw, 40px);
+  --fs-body:    clamp(17px, 1.25vw, 21px);
+  --fs-small:   clamp(12px, 0.9vw, 13px);
+
+  --ease: cubic-bezier(.2,.7,.15,1);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: 1.35;
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
+  font-feature-settings: "ss01","ss02","cv11","calt";
+}
+
+/* Paper grain texture via CSS only — very subtle */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: .35;
+  mix-blend-mode: multiply;
+  background-image:
+    radial-gradient(rgba(14,13,11,.035) 1px, transparent 1px),
+    radial-gradient(rgba(14,13,11,.025) 1px, transparent 1px);
+  background-size: 3px 3px, 7px 7px;
+  background-position: 0 0, 1px 2px;
+}
+
+::selection { background: var(--accent); color: #fff; }
+
+a { color: inherit; text-decoration: none; }
+p { margin: 0; }
+em { font-style: italic; }
+strong { font-weight: 600; }
+button { font: inherit; cursor: pointer; background: none; border: none; color: inherit; }
+
+/* ============ NAV ============ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 18px var(--pad-x);
+  background: color-mix(in oklab, var(--paper) 86%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  letter-spacing: .02em;
+}
+.nav__brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  font-style: italic;
+}
+.nav__meta {
+  justify-self: center;
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--dim);
+}
+.nav__dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 80%, transparent);
+  animation: pulse 2.4s infinite;
+}
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 60%, transparent); }
+  70%  { box-shadow: 0 0 0 10px color-mix(in oklab, var(--accent) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 0%, transparent); }
+}
+.nav__cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  transition: background .25s var(--ease), color .25s var(--ease);
+}
+.nav__cta:hover { background: var(--ink); color: var(--paper); }
+
+@media (max-width: 720px) {
+  .nav { grid-template-columns: 1fr auto; gap: 12px; padding: 14px 20px; }
+  .nav__meta { display: none; }
+}
+
+/* ============ LAYOUT / SECTIONS ============ */
+main { padding-top: 0; position: relative; z-index: 2; }
+
+.section {
+  position: relative;
+  padding: clamp(100px, 12vh, 180px) var(--pad-x);
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+.section + .section {
+  border-top: 1px solid var(--rule);
+}
+
+.section__tag {
+  position: absolute;
+  top: clamp(28px, 6vh, 60px);
+  left: var(--pad-x);
+  right: var(--pad-x);
+  display: flex; justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--dim);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.section__tag span:first-child {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.section__title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: var(--fs-lg);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0 0 clamp(40px, 6vh, 88px);
+  color: var(--ink);
+}
+
+/* utility */
+.mono { font-family: var(--font-mono); letter-spacing: .01em; }
+.small { font-size: var(--fs-small); }
+.dim { color: var(--dim); }
+.accent { color: var(--accent); }
+.strike { text-decoration: line-through; text-decoration-thickness: 1px; color: var(--dim); }
+.paren { color: var(--dim); font-size: .85em; }
+
+/* ============ REVEAL ============ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .9s var(--ease), transform 1s var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reduce-motion [data-reveal] { opacity: 1 !important; transform: none !important; }
+
+/* ============ §01 HERO ============ */
+.hero {
+  min-height: 100vh;
+  padding-top: clamp(120px, 18vh, 200px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: end;
+}
+.hero__side {
+  justify-self: end;
+  text-align: right;
+  color: var(--dim);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.hero__side .tick { color: var(--accent); }
+
+.hero__headline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: var(--fs-hero);
+  line-height: 0.9;
+  letter-spacing: -0.045em;
+  margin: 0;
+  font-variation-settings: "SOFT" 30, "opsz" 144;
+}
+.hero__headline .line {
+  display: block;
+  overflow: hidden;
+  padding: 0.01em 0;
+}
+.hero__headline .line--italic {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink);
+  font-variation-settings: "SOFT" 80, "opsz" 144;
+}
+.hero__headline .line--accent {
+  color: var(--ink);
+}
+.hero__headline .count {
+  color: var(--accent);
+  font-variation-settings: "SOFT" 20, "opsz" 144;
+  font-variant-numeric: tabular-nums;
+}
+.hero__headline .count__label {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink);
+}
+
+.hero__sub {
+  margin-top: clamp(60px, 10vh, 120px);
+  max-width: 720px;
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  font-weight: 400;
+}
+.hero__sub p + p { margin-top: 12px; }
+.hero__sub .pop {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(32px, 4vw, 56px);
+  letter-spacing: -0.02em;
+  margin-top: 18px;
+}
+.hero__sub .pop em {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 700;
+}
+
+.hero__scroll {
+  margin-top: clamp(40px, 6vh, 80px);
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--dim);
+}
+.hero__scroll .arrow {
+  display: inline-block;
+  animation: bob 2.4s ease-in-out infinite;
+}
+@keyframes bob {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+@media (max-width: 720px) {
+  .hero__grid { grid-template-columns: 1fr; }
+  .hero__side { justify-self: start; text-align: left; }
+  .hero__sub { font-size: clamp(18px, 4.2vw, 26px); }
+}
+
+/* ============ §02 THESIS ============ */
+.thesis__body {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--fs-xl);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  max-width: 1200px;
+}
+.thesis__body p { margin: 0; padding: 0.04em 0; }
+.thesis__punch {
+  font-weight: 700;
+  font-style: italic;
+}
+.thesis__punch--accent { color: var(--accent); }
+
+/* ============ §03 QUÉ HAGO ============ */
+.que__lede {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: var(--fs-lg);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin: 0 0 clamp(50px, 8vh, 90px);
+  max-width: 1100px;
+}
+.que__lede p { margin: 0; }
+
+.que__cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(40px, 6vw, 96px);
+  margin-bottom: clamp(60px, 10vh, 120px);
+  padding-top: 40px;
+  border-top: 1px solid var(--rule);
+}
+.que__col p + p { margin-top: 18px; }
+.que__col p { max-width: 40ch; }
+.que__col p:first-of-type { margin-top: 10px; }
+
+.que__list { list-style: none; margin: 0; padding: 0; }
+.que__list li {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 16px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(22px, 2.5vw, 34px);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.que__list li:first-child { border-top: 1px solid var(--rule); }
+
+.que__promise {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: var(--fs-lg);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin-bottom: clamp(80px, 14vh, 180px);
+}
+.que__promise p { margin: 0; padding: 2px 0; }
+.que__promise strong {
+  font-style: normal;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* Verbs "Miro. Corto. Priorizo. Me voy." */
+.verbs { margin-top: 40px; }
+.verbs__pre {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--rule);
+}
+.verbs__grid {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(4px, 1.2vh, 18px);
+}
+.verb {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(60px, 14vw, 220px);
+  line-height: 0.88;
+  letter-spacing: -0.05em;
+  color: var(--ink);
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 1s var(--ease), transform 1.1s var(--ease);
+  font-variation-settings: "SOFT" 20, "opsz" 144;
+  display: block;
+}
+.verb .accent { color: var(--accent); }
+.verb:nth-child(2) { padding-left: 10%; font-style: italic; font-weight: 400; }
+.verb:nth-child(3) { padding-left: 4%; }
+.verb:nth-child(4) { padding-left: 22%; font-weight: 700; font-style: italic; }
+.verbs.is-visible .verb { opacity: 1; transform: translateX(0); }
+.verbs.is-visible .verb:nth-child(1) { transition-delay: 0ms; }
+.verbs.is-visible .verb:nth-child(2) { transition-delay: 220ms; }
+.verbs.is-visible .verb:nth-child(3) { transition-delay: 440ms; }
+.verbs.is-visible .verb:nth-child(4) { transition-delay: 680ms; }
+
+.reduce-motion .verb { opacity: 1 !important; transform: none !important; }
+
+@media (max-width: 720px) {
+  .que__cols { grid-template-columns: 1fr; gap: 40px; }
+  .que__list li { grid-template-columns: 36px 1fr; gap: 10px; }
+  .verb:nth-child(n) { padding-left: 0; }
+}
+
+/* ============ §04 QUÉ INCLUYE ============ */
+.incluye__list {
+  list-style: none;
+  margin: 0 0 clamp(60px, 10vh, 120px);
+  padding: 0;
+  counter-reset: incluye;
+}
+.incluye__list li {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 24px;
+  align-items: baseline;
+  padding: clamp(22px, 3vh, 32px) 0;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(24px, 3.2vw, 44px);
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  transition: background .35s var(--ease), padding-left .35s var(--ease);
+}
+.incluye__list li:first-child { border-top: 1px solid var(--rule); }
+.incluye__list li:hover {
+  padding-left: 12px;
+  background: linear-gradient(to right, color-mix(in oklab, var(--accent) 8%, transparent), transparent 60%);
+}
+.incluye__list li em { font-weight: 400; font-style: italic; }
+.incluye__list li .vs {
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 0.55em;
+  color: var(--dim);
+  padding: 0 0.2em;
+  text-transform: lowercase;
+}
+.incluye__list li q {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--dim);
+}
+.incluye__list li q::before, .incluye__list li q::after { content: '"'; }
+
+.incluye__kicker {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(40px, 7vw, 100px);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+@media (max-width: 720px) {
+  .incluye__list li { grid-template-columns: 48px 1fr; gap: 14px; }
+}
+
+/* ============ §05 PARA QUIÉN ============ */
+.parawho__lede {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: var(--fs-lg);
+  letter-spacing: -0.02em;
+  margin: 0 0 40px;
+}
+.parawho__list {
+  list-style: none;
+  margin: 0 0 clamp(80px, 12vh, 140px);
+  padding: 0;
+  max-width: 1200px;
+}
+.parawho__list li {
+  font-family: var(--font-sans);
+  font-size: clamp(20px, 2.4vw, 30px);
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.parawho__list li:first-child { border-top: 1px solid var(--rule); }
+.parawho__list .pull {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-style: italic;
+  color: var(--accent);
+  font-size: 1.1em;
+}
+.parawho__list .pull::before, .parawho__list .pull::after { content: '"'; }
+
+/* Sí / No */
+.sino {
+  margin: clamp(60px, 10vh, 120px) 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 4vh, 48px);
+}
+.sino__row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: clamp(16px, 4vw, 40px);
+  align-items: baseline;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(26px, 4.2vw, 60px);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  padding-bottom: clamp(20px, 3vh, 40px);
+  border-bottom: 1px solid var(--rule);
+}
+.sino__label { color: var(--ink); }
+.sino__verdict {
+  font-weight: 900;
+  font-style: italic;
+  display: inline-flex;
+  align-items: baseline;
+  gap: clamp(10px, 2vw, 24px);
+  white-space: nowrap;
+}
+.sino__bar {
+  display: inline-block;
+  height: 0.08em;
+  background: var(--ink);
+  width: 0;
+  transition: width 1.2s var(--ease);
+  align-self: center;
+  transform: translateY(-0.1em);
+}
+.sino__row--no .sino__verdict { color: var(--ink); }
+.sino__row--si .sino__verdict { color: var(--accent); }
+.sino__row--si .sino__bar { background: var(--accent); }
+.sino__row.is-visible .sino__bar { width: clamp(40px, 14vw, 180px); }
+.reduce-motion .sino__bar { width: clamp(40px, 14vw, 180px) !important; }
+
+.parawho__outro {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: var(--fs-lg);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 10px 0;
+}
+.parawho__outro--big {
+  font-size: clamp(40px, 7vw, 100px);
+  font-weight: 900;
+  font-style: normal;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  margin-top: 30px;
+}
+.parawho__outro--big em {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 400;
+}
+
+@media (max-width: 720px) {
+  .sino__row { grid-template-columns: 1fr; gap: 6px; }
+}
+
+/* ============ §06 INVERSIÓN ============ */
+.inversion {
+  padding-top: clamp(100px, 18vh, 220px);
+  padding-bottom: clamp(100px, 18vh, 220px);
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+}
+.inversion__stack {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) minmax(200px, auto);
+  gap: clamp(20px, 3vw, 60px);
+  align-items: center;
+}
+.inversion__label {
+  color: var(--dim);
+  font-size: var(--fs-small);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.inversion__figure {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(80px, 13vw, 260px);
+  letter-spacing: -0.06em;
+  line-height: 0.82;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.05em;
+  color: var(--ink);
+  font-variation-settings: "SOFT" 10, "opsz" 144;
+  min-width: 0;
+  overflow: hidden;
+}
+.inversion__cur {
+  font-weight: 400;
+  font-style: italic;
+  color: var(--accent);
+  font-size: 0.55em;
+  line-height: 1;
+  margin-top: 0.08em;
+}
+.inversion__rules {
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  line-height: 1.35;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.inversion__rules .dash { color: var(--accent); margin-right: 10px; }
+
+@media (max-width: 900px) {
+  .inversion__stack { grid-template-columns: 1fr; gap: 30px; }
+  .inversion__label { writing-mode: horizontal-tb; transform: none; }
+}
+
+/* ============ §07 QUIÉN ============ */
+.quien__intro {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--fs-xl);
+  letter-spacing: -0.035em;
+  line-height: 0.96;
+  margin-bottom: clamp(60px, 10vh, 120px);
+}
+.quien__name em {
+  font-weight: 900;
+  font-style: italic;
+  color: var(--accent);
+}
+
+.quien__pre {
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--dim);
+  margin-bottom: 30px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Stats */
+.stats {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: clamp(60px, 10vh, 120px);
+}
+.stat {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: clamp(20px, 4vw, 60px);
+  padding: clamp(28px, 5vh, 56px) 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: baseline;
+}
+.stat:first-child { border-top: 1px solid var(--rule); }
+.stat__head {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.stat__head .mono { font-size: var(--fs-small); color: var(--dim); }
+.stat__body {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(10px, 2vw, 24px);
+  flex-wrap: wrap;
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+}
+.stat__plus {
+  font-size: clamp(40px, 6vw, 84px);
+  color: var(--accent);
+  font-weight: 400;
+  font-style: italic;
+}
+.stat__num {
+  font-size: clamp(60px, 11vw, 168px);
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  font-variation-settings: "SOFT" 10, "opsz" 144;
+}
+.stat__unit {
+  font-size: clamp(40px, 6vw, 84px);
+  color: var(--ink);
+  font-weight: 400;
+  font-style: italic;
+}
+.stat__small {
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.stat__small .arrow { color: var(--accent); padding: 0 0.1em; }
+.stat__desc {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: clamp(15px, 1.2vw, 18px);
+  color: var(--dim);
+  letter-spacing: 0;
+  line-height: 1.4;
+  max-width: 32ch;
+  margin-left: auto;
+}
+.stat__desc em {
+  font-style: italic;
+  color: var(--ink);
+}
+.stat__desc strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+@media (max-width: 820px) {
+  .stat { grid-template-columns: 1fr; gap: 14px; }
+  .stat__desc { margin-left: 0; max-width: 100%; }
+}
+
+.quien__tally {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: var(--fs-lg);
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  margin-bottom: clamp(80px, 12vh, 140px);
+}
+.quien__tally strong {
+  font-weight: 900;
+  font-style: normal;
+  color: var(--accent);
+}
+
+.quien__origin {
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  margin-bottom: clamp(60px, 10vh, 100px);
+  max-width: 1100px;
+}
+.quien__origin p + p { margin-top: 12px; }
+.quien__punch {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--fs-lg);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.quien__punch em {
+  font-style: italic;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.quien__teach {
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  margin-bottom: clamp(60px, 10vh, 100px);
+  padding: 30px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.quien__teach .schools {
+  font-family: var(--font-mono);
+  font-size: 0.78em;
+  letter-spacing: 0.02em;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 0.15em 0.4em 0.2em;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.quien__rules {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: var(--fs-lg);
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  margin-bottom: clamp(60px, 10vh, 100px);
+}
+.quien__rules p + p { margin-top: 4px; }
+.quien__rules__out {
+  margin-top: 24px !important;
+  font-style: italic;
+  font-weight: 400;
+}
+.quien__rules__out em {
+  font-weight: 900;
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* Promises */
+.promises {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(30px, 6vw, 80px);
+  padding: 40px 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.promises__head {
+  grid-column: span 1;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin: 0 0 24px;
+}
+.promises__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  grid-column: span 1;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(22px, 2.6vw, 36px);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+.promises__list li + li { margin-top: 6px; }
+.promises__list--no li { color: var(--dim); }
+.promises__list--no .strike { color: var(--dim); }
+.promises__list:not(.promises__list--no) li .accent { color: var(--accent); margin-right: 8px; font-weight: 900; }
+
+@media (max-width: 720px) {
+  .promises { grid-template-columns: 1fr; }
+}
+
+/* ============ §08 CTA ============ */
+.cta {
+  padding-top: clamp(120px, 20vh, 220px);
+  padding-bottom: clamp(80px, 12vh, 140px);
+  text-align: left;
+}
+.cta__frame {
+  border: 1px solid var(--ink);
+  padding: clamp(40px, 8vw, 100px);
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.cta__small {
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 24px;
+}
+.cta__line {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(64px, 13vw, 200px);
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  margin: 0;
+  font-variation-settings: "SOFT" 20, "opsz" 144;
+}
+.cta__line--accent {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+  padding-left: 0.5em;
+}
+.cta__body {
+  margin: clamp(30px, 5vh, 60px) 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  max-width: 780px;
+}
+.cta__body p + p { margin-top: 6px; }
+
+.cta__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 34px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(20px, 2vw, 28px);
+  letter-spacing: -0.02em;
+  border-radius: 0;
+  transition: background .3s var(--ease), color .3s var(--ease), transform .3s var(--ease);
+  margin-top: 20px;
+}
+.cta__btn:hover {
+  background: var(--accent);
+  color: var(--ink);
+}
+.cta__btn:hover .cta__arrow { transform: translateX(6px); }
+.cta__arrow {
+  transition: transform .3s var(--ease);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* ============ FOOTER ============ */
+.foot {
+  padding: 40px var(--pad-x);
+  border-top: 1px solid var(--rule);
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+.foot__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--dim);
+  letter-spacing: .02em;
+}
+.foot__row span:first-child { color: var(--ink); }
+
+/* ============ TWEAKS PANEL ============ */
+.tweaks {
+  position: fixed;
+  right: 20px; bottom: 20px;
+  width: 260px;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  z-index: 100;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  box-shadow: 6px 6px 0 var(--ink);
+}
+.tweaks__head {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+  display: flex; justify-content: space-between; align-items: center;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.tweaks__head button {
+  color: var(--paper);
+  font-size: 20px; line-height: 1;
+  padding: 0 4px;
+}
+.tweaks__body { padding: 14px; display: flex; flex-direction: column; gap: 14px; }
+.tweaks__body label {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.tweaks__body input[type="color"] {
+  width: 34px; height: 24px; border: 1px solid var(--ink); background: none; padding: 0;
+}
+.tweaks__body select, .tweaks__body input[type="checkbox"] {
+  font: inherit;
+}
+.tweaks__body select {
+  border: 1px solid var(--ink);
+  padding: 4px 6px;
+  background: var(--paper);
+}
+.tweaks__toggle { grid-template-columns: 1fr auto; }
+
+/* Background variants (via body class) */
+body.bg-bone { --paper: #EFE8DA; }
+body.bg-snow { --paper: #F7F5F0; }
+body.bg-ink {
+  --paper: #0E0D0B;
+  --ink: #F2EEE6;
+  --ink-2: #E7E3D8;
+  --dim: #75706A;
+  --rule: rgba(242,238,230,.18);
+}
+body.bg-ink .nav__cta { border-color: var(--ink); }
+body.bg-ink .tweaks { box-shadow: 6px 6px 0 var(--accent); }
+
+/* Display font variant */
+body.display-inter {
+  --font-display: 'Inter Tight', system-ui, sans-serif;
+}
+body.display-inter .hero__headline,
+body.display-inter .verb,
+body.display-inter .cta__line,
+body.display-inter .stat__num {
+  font-variation-settings: normal;
+}
+
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav" aria-label="Principal">
+  <a href="#inicio" class="nav__brand"><span>Oriol Ibars</span></a>
+  <div class="nav__meta">
+    <span class="nav__dot" aria-hidden="true"></span>
+    <span>Disponible · 2026</span>
+  </div>
+  <a href="https://calendly.com/oriolibars/30min" class="nav__cta" target="_blank" rel="noopener">Solicitar conversación <span aria-hidden="true">→</span></a>
+</nav>
+
+<main>
+
+  <!-- §01 HERO -->
+  <section class="hero section" id="inicio" data-section="01" data-screen-label="01 Hero">
+    <div class="section__tag"><span>§01</span><span>Diagnóstico</span></div>
+
+    <div class="hero__grid">
+      <h1 class="hero__headline">
+        <span class="line" data-reveal="">Ya sabes</span>
+        <span class="line" data-reveal="">que algo</span>
+        <span class="line line--italic" data-reveal="">no cuadra.</span>
+      </h1>
+
+    </div>
+
+    <div class="hero__sub">
+      <p>No es tráfico. No es producto. No es equipo.</p>
+      <p class="pop">Es que no sabes exactamente dónde estás <em>perdiendo dinero</em>.</p>
+    </div>
+
+    <div class="hero__scroll mono small" aria-hidden="true">
+      <span>Scroll</span>
+      <span class="arrow">↓</span>
+    </div>
+  </section>
+
+  <!-- §02 THESIS -->
+  <section class="section thesis" data-section="02" data-screen-label="02 Tesis">
+    <div class="section__tag"><span>§02</span><span>Tesis</span></div>
+
+    <div class="thesis__body">
+      <p data-reveal="">El problema no es hacer más.</p>
+      <p class="thesis__punch" data-reveal="">Es que el 80% de lo que haces no mueve nada</p>
+      <p class="thesis__punch thesis__punch--accent" data-reveal="">y el 20% que sí importa no lo estás viendo.</p>
+    </div>
+  </section>
+
+  <!-- §03 QUÉ HAGO -->
+  <section class="section que" data-section="03" data-screen-label="03 Qué hago">
+    <div class="section__tag"><span>§03</span><span>Qué hago</span></div>
+
+    <h2 class="section__title" data-reveal="">Qué hago</h2>
+
+    <div class="que__lede">
+      <p data-reveal="">No soy una agencia. No necesito tres semanas para entenderte.</p>
+      <p data-reveal="">Entro cuando ya tienes tracción y todavía hay dinero sobre la mesa.</p>
+    </div>
+
+    <div class="que__cols">
+      <div class="que__col">
+        <p class="mono small dim">— Experiencia</p>
+        <p data-reveal="">25 años. 250 proyectos. Ecommerce, banca, travel, suscripciones. En 72h sé dónde está el problema. No porque sea más listo. Porque lo he visto demasiadas veces.</p>
+        <p data-reveal="" style="margin-top:1em;">No solo conversión. <strong>Producto, estrategia, decisiones.</strong> A veces el problema está en el funnel. A veces está antes.</p>
+      </div>
+      <ul class="que__list">
+        <li data-reveal=""><span class="mono small dim">01</span> La mayoría de lo que haces no mueve nada</li>
+        <li data-reveal=""><span class="mono small dim">02</span> Lo que sí importa, nadie lo mira</li>
+        <li data-reveal=""><span class="mono small dim">03</span> Y cada semana eso tiene un coste real que nadie está midiendo</li>
+      </ul>
+    </div>
+
+    <div class="que__promise">
+      <p data-reveal="">Lo veo en <strong>72 horas</strong>.</p>
+      <p data-reveal="">Lo tendrás documentado en <strong>una semana</strong>.</p>
+    </div>
+
+    <!-- The wow: "Miro. Corto. Priorizo. Me voy." -->
+    <div class="verbs" data-verbs="">
+      <p class="verbs__pre" data-reveal=""><strong>No rediseño. No implemento. No me quedo.</strong></p>
+      <div class="verbs__grid">
+        <span class="verb" data-verb="0">Miro.</span>
+        <span class="verb" data-verb="1">Corto.</span>
+        <span class="verb" data-verb="2">Prioriz<span class="accent">o</span>.</span>
+        <span class="verb" data-verb="3">Me voy.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- §04 QUÉ INCLUYE -->
+  <section class="section incluye" data-section="04" data-screen-label="04 Qué incluye">
+    <div class="section__tag"><span>§04</span><span>Entregable</span></div>
+
+    <h2 class="section__title" data-reveal="">Qué incluye el diagnóstico</h2>
+
+    <ol class="incluye__list">
+      <li data-reveal="">
+        <span class="mono small dim">01</span>
+        <span>Dónde se va el dinero. Exactamente.</span>
+      </li>
+      <li data-reveal="">
+        <span class="mono small dim">02</span>
+        <span>Fricciones que están matando la conversión <span class="paren">(y nadie ve)</span></span>
+      </li>
+      <li data-reveal="">
+        <span class="mono small dim">03</span>
+        <span>Qué tres cosas, si las cambias esta semana, mueven la aguja.</span>
+      </li>
+      <li data-reveal="">
+        <span class="mono small dim">04</span>
+        <span>Decisiones que se toman <q>porque siempre se ha hecho así</q></span>
+      </li>
+      <li data-reveal="">
+        <span class="mono small dim">05</span>
+        <span>Una hoja de ruta clara que tu equipo puede ejecutar sin depender de mí.</span>
+      </li>
+    </ol>
+
+    <p class="incluye__kicker" data-reveal="">Lo que no mueve la aguja, <span class="accent">fuera</span>.</p>
+  </section>
+
+  <!-- §05 PARA QUIÉN -->
+  <section class="section parawho" data-section="05" data-screen-label="05 Para quién">
+    <div class="section__tag"><span>§05</span><span>Para quién</span></div>
+
+    <h2 class="section__title" data-reveal="">Para quién es</h2>
+
+    <p class="parawho__lede" data-reveal="">Este servicio es para negocios digitales que:</p>
+
+    <ul class="parawho__list">
+      <li data-reveal="">Facturan más de 2M/año. Tracción real. Equipo ejecutando.</li>
+      <li data-reveal="">Tienen equipos ejecutando pero les falta dirección</li>
+      <li data-reveal="">Han probado 15 cosas este trimestre y 12 no han movido nada</li>
+      <li data-reveal="">Necesitan a alguien que diga <q class="pull">esto no se toca — esto sí se toca</q></li>
+    </ul>
+
+    <!-- Wow: Sí / No -->
+    <div class="sino">
+      <div class="sino__row sino__row--no" data-reveal="">
+        <span class="sino__label">Si tu problema es hacer más,</span>
+        <span class="sino__verdict"><span class="sino__bar" data-bar=""></span>no te ayudaré.</span>
+      </div>
+      <div class="sino__row sino__row--si" data-reveal="">
+        <span class="sino__label">Si tu problema es decidir mejor,</span>
+        <span class="sino__verdict"><span class="sino__bar" data-bar=""></span>sí te ayudaré.</span>
+      </div>
+    </div>
+
+    <p class="parawho__outro" data-reveal="">No importa si vendes vuelos, suscripciones, créditos o zapatos.</p>
+    <p class="parawho__outro parawho__outro--big" data-reveal="">Si conviertes online, <em>sé dónde está el dinero</em>.</p>
+  </section>
+
+  <!-- §06 INVERSIÓN -->
+  <section class="section inversion" data-section="06" data-screen-label="06 Inversión">
+    <div class="section__tag"><span>§06</span><span>Inversión mínima</span></div>
+
+    <div class="inversion__stack">
+      <p class="inversion__label mono" data-reveal="">Inversión mínima</p>
+      <div class="inversion__figure" data-reveal="">
+        <span class="inversion__num">10.000</span>
+        <span class="inversion__cur">€</span>
+      </div>
+      <div class="inversion__rules">
+        <p data-reveal=""><span class="dash">—</span> No es un pack.</p>
+        <p data-reveal=""><span class="dash">—</span> No es negociable.</p>
+        <p data-reveal=""><span class="dash">—</span> No todos los proyectos encajan.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- §07 QUIÉN -->
+  <section class="section quien" data-section="07" data-screen-label="07 Quién">
+    <div class="section__tag"><span>§07</span><span>Quién está detrás</span></div>
+
+    <h2 class="section__title" data-reveal="">Quién está detrás</h2>
+
+    <div class="quien__intro">
+      <p class="quien__name" data-reveal="">Soy <em>Oriol Ibars</em>.</p>
+      <p data-reveal="">25 años mirando <strong>lo que nadie quiere mirar</strong>. Los datos que incomodan, las decisiones que se repiten por inercia, <strong>el dinero que se va sin que nadie lo vea</strong>. Lo llamo artesanía: datos, sentido común y criterio para saber cuándo parar. <strong>No hay secretos.</strong></p>
+    </div>
+
+    <p class="quien__pre mono small" data-reveal="">He trabajado en:</p>
+
+    <div class="stats">
+      <div class="stat" data-reveal="">
+        <div class="stat__head">
+          <span class="mono small dim">Ecommerce B2C</span>
+        </div>
+        <div class="stat__body">
+          <span class="stat__plus">+</span><span class="stat__num" data-count-to="196">0</span><span class="stat__unit">%</span>
+          <span class="stat__desc">conversión · ventas online de <span>30%</span> a <span class="accent">65%</span></span>
+        </div>
+      </div>
+
+      <div class="stat" data-reveal="">
+        <div class="stat__head">
+          <span class="mono small dim">Ecommerce €40M facturación</span>
+        </div>
+        <div class="stat__body">
+          <span class="stat__plus">+</span><span class="stat__num" data-count-to="30">0</span><span class="stat__unit">%</span>
+          <span class="stat__desc">conversión</span>
+        </div>
+      </div>
+
+      <div class="stat" data-reveal="">
+        <div class="stat__head">
+          <span class="mono small dim">Travel · Bookings</span>
+        </div>
+        <div class="stat__body">
+          <span class="stat__plus">+</span><span class="stat__num" data-count-to="39">0</span><span class="stat__unit">%</span>
+          <span class="stat__desc">conversión en funnel completo</span>
+        </div>
+      </div>
+
+      <div class="stat" data-reveal="">
+        <div class="stat__head">
+          <span class="mono small dim">Fintech · Banca</span>
+        </div>
+        <div class="stat__body">
+          <span class="stat__plus"></span><span class="stat__num" data-count-to="180">0</span><span class="stat__unit"></span>
+          <span class="stat__desc">productos digitales · área online a <em>top territory</em></span>
+        </div>
+      </div>
+
+      <div class="stat" data-reveal="">
+        <div class="stat__head">
+          <span class="mono small dim">Suscripciones</span>
+        </div>
+        <div class="stat__body">
+          <span class="stat__small">0.7% <span class="arrow">→</span> <span class="accent">2.1%</span></span>
+          <span class="stat__desc">conversión · revenue <strong>×2</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <p class="quien__tally" data-reveal="">Más de <strong>250 proyectos</strong> en ecommerce, banca, travel, suscripciones, apps.</p>
+
+    <div class="quien__origin">
+      <p data-reveal="">No vengo del diseño. <span class="dim">Ni del growth hacking.</span></p>
+      <p class="quien__punch" data-reveal="">Vengo de <em>producto</em>, <em>conversión</em>, y <em>decisiones con números delante</em>.</p>
+    </div>
+
+    <div class="quien__teach">
+      <p data-reveal="">Desde 2010 doy clase en <span class="schools">Elisava · UAB · UPF</span>. Porque me importa que la gente aprenda a pensar bien.</p>
+    </div>
+
+    <div class="quien__rules">
+      <p data-reveal="">No trabajo como agencia.</p>
+      <p data-reveal="">No vendo horas.</p>
+      <p data-reveal="">No delego criterio.</p>
+      <p class="quien__rules__out" data-reveal="">Si trabajamos juntos, <em>hablas directamente conmigo</em>.</p>
+    </div>
+
+    <div class="promises">
+      <p class="promises__head mono small dim" data-reveal="">— Lo que no voy a prometerte</p>
+      <ul class="promises__list promises__list--no">
+        <li data-reveal=""><span class="strike">hacks</span></li>
+        <li data-reveal=""><span class="strike">milagros</span></li>
+        <li data-reveal=""><span class="strike">crecer un 300%</span></li>
+      </ul>
+
+      <p class="promises__head mono small" data-reveal="">— Lo que sí te voy a decir</p>
+      <ul class="promises__list">
+        <li data-reveal=""><span class="accent">—</span> Aquí sí</li>
+        <li data-reveal=""><span class="accent">—</span> Aquí no</li>
+        <li data-reveal=""><span class="accent">—</span> Y lo que te está costando cada mes no arreglarlo</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- §08 CTA -->
+  <section class="section cta" data-section="08" data-screen-label="08 CTA">
+    <div class="section__tag"><span>§08</span><span>Contacto</span></div>
+
+    <div class="cta__frame">
+      <p class="cta__small mono" data-reveal="">30 minutos.</p>
+      <p class="cta__line" data-reveal="">O encaja,</p>
+      <p class="cta__line cta__line--accent" data-reveal="">o no.</p>
+
+      <div class="cta__body">
+        <p data-reveal="">No persigo. No vendo en la llamada.</p>
+        <p data-reveal="">O veo el problema y sé cómo arreglarlo,</p>
+        <p data-reveal="">o te digo que no puedo ayudarte.</p>
+      </div>
+
+      <a class="cta__btn" href="https://calendly.com/oriolibars/30min" target="_blank" rel="noopener" data-reveal="">
+        <span>Solicitar conversación</span>
+        <span class="cta__arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="foot__row">
+      <span>© 2026 Oriol Ibars</span>
+      <span class="dim">25 años. 250 proyectos. Mirando lo que nadie quiere mirar.</span>
+      <span class="mono small dim">v.2026.04</span>
+    </div>
+  </footer>
+
+</main>
+
+<!-- Tweaks -->
+<div id="tweaks" class="tweaks" hidden="">
+  <div class="tweaks__head">
+    <span>Tweaks</span>
+    <button id="tweaks-close" aria-label="Cerrar">×</button>
+  </div>
+  <div class="tweaks__body">
+    <label>
+      <span>Acento</span>
+      <input type="color" id="tw-accent">
+    </label>
+    <label>
+      <span>Fondo</span>
+      <select id="tw-bg">
+        <option value="paper">Paper (off-white)</option>
+        <option value="bone">Bone</option>
+        <option value="snow">Snow</option>
+        <option value="ink">Ink (invertido)</option>
+      </select>
+    </label>
+    <label>
+      <span>Display</span>
+      <select id="tw-display">
+        <option value="fraunces">Fraunces (serif)</option>
+        <option value="inter">Inter Tight (sans)</option>
+      </select>
+    </label>
+    <label class="tweaks__toggle">
+      <span>Reducir movimiento</span>
+      <input type="checkbox" id="tw-reduce">
+    </label>
+  </div>
+</div>
+
+<script>
+/* Oriol Ibars — interactions */
+
+(function() {
+  'use strict';
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ===== Reveal on scroll ===== */
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  // set cascading delays for siblings
+  revealEls.forEach((el) => {
+    const parent = el.parentElement;
+    if (!parent) return;
+    const siblings = Array.from(parent.querySelectorAll(':scope > [data-reveal]'));
+    const idx = siblings.indexOf(el);
+    if (idx > 0) el.style.setProperty('--reveal-delay', (idx * 90) + 'ms');
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+  revealEls.forEach((el) => io.observe(el));
+
+  /* ===== Verbs block ===== */
+  const verbs = document.querySelector('[data-verbs]');
+  if (verbs) {
+    const vio = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          vio.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    vio.observe(verbs);
+  }
+
+  /* ===== Sino bars ===== */
+  document.querySelectorAll('.sino__row').forEach((row) => {
+    const rio = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          rio.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    rio.observe(row);
+  });
+
+  /* ===== Counters ===== */
+  function animateCount(el, target, duration = 1600) {
+    if (prefersReduced || document.body.classList.contains('reduce-motion')) {
+      el.textContent = target.toLocaleString('es-ES');
+      return;
+    }
+    const start = performance.now();
+    const startVal = 0;
+    const ease = (t) => 1 - Math.pow(1 - t, 3);
+    function step(now) {
+      const elapsed = now - start;
+      const progress = Math.min(1, elapsed / duration);
+      const val = Math.round(startVal + (target - startVal) * ease(progress));
+      el.textContent = val.toLocaleString('es-ES');
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  document.querySelectorAll('[data-count-to]').forEach((el) => {
+    const target = parseInt(el.getAttribute('data-count-to'), 10);
+    const cio = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          animateCount(el, target);
+          cio.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.5 });
+    cio.observe(el);
+  });
+
+  /* ===== Edit mode / Tweaks ===== */
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "accent": "#FF5B14",
+    "bg": "paper",
+    "display": "fraunces",
+    "reduce": false
+  }/*EDITMODE-END*/;
+
+  const tweaks = document.getElementById('tweaks');
+  const tAccent = document.getElementById('tw-accent');
+  const tBg = document.getElementById('tw-bg');
+  const tDisplay = document.getElementById('tw-display');
+  const tReduce = document.getElementById('tw-reduce');
+  const tClose = document.getElementById('tweaks-close');
+
+  function applyTweaks(t) {
+    document.documentElement.style.setProperty('--accent', t.accent);
+    document.body.classList.remove('bg-paper','bg-bone','bg-snow','bg-ink');
+    document.body.classList.add('bg-' + t.bg);
+    document.body.classList.remove('display-fraunces','display-inter');
+    document.body.classList.add('display-' + t.display);
+    document.body.classList.toggle('reduce-motion', !!t.reduce);
+    if (tAccent) tAccent.value = t.accent;
+    if (tBg) tBg.value = t.bg;
+    if (tDisplay) tDisplay.value = t.display;
+    if (tReduce) tReduce.checked = !!t.reduce;
+  }
+
+  let current = { ...TWEAK_DEFAULTS };
+  applyTweaks(current);
+
+  function send(patch) {
+    current = { ...current, ...patch };
+    applyTweaks(current);
+    try {
+      window.parent.postMessage({ type: '__edit_mode_set_keys', edits: patch }, '*');
+    } catch (_) {}
+  }
+
+  if (tAccent) tAccent.addEventListener('input', (e) => send({ accent: e.target.value }));
+  if (tBg) tBg.addEventListener('change', (e) => send({ bg: e.target.value }));
+  if (tDisplay) tDisplay.addEventListener('change', (e) => send({ display: e.target.value }));
+  if (tReduce) tReduce.addEventListener('change', (e) => send({ reduce: e.target.checked }));
+  if (tClose) tClose.addEventListener('click', () => {
+    tweaks.hidden = true;
+    try { window.parent.postMessage({ type: '__deactivate_edit_mode' }, '*'); } catch(_) {}
+  });
+
+  window.addEventListener('message', (ev) => {
+    const data = ev.data;
+    if (!data || typeof data !== 'object') return;
+    if (data.type === '__activate_edit_mode') tweaks.hidden = false;
+    if (data.type === '__deactivate_edit_mode') tweaks.hidden = true;
+  });
+
+  // announce availability
+  try {
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+  } catch (_) {}
+
+})();
+
+</script>
+
+</body></html>
