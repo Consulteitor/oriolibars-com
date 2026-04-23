@@ -1057,6 +1057,16 @@ body.display-inter .stat__num {
   font-variation-settings: normal;
 }
 
+/* ============ WIDE SCREENS (1600px+) ============ */
+@media (min-width: 1600px) {
+  :root {
+    --fs-hero: clamp(140px, 11vw, 200px);
+  }
+  .inversion__figure {
+    font-size: clamp(80px, 9vw, 200px);
+  }
+}
+
 </style>
 </head>
 <body>
