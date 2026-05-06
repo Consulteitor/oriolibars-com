@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter+Tight:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:wght@300..700&display=swap">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagnóstico Estratégico — Oriol Ibars</title>
+<meta name="description" content="Encuentro dónde pierde dinero tu negocio digital y qué deberías mover primero. Diagnóstico estratégico desde 10.000€.">
+
+<style>
+/* =========================================================
+   Oriol Ibars — one-pager tipográfico (shared styles)
+   ========================================================= */
+
+:root {
+  --paper: #F2EEE6;
+  --ink:   #0E0D0B;
+  --ink-2: #1A1815;
+  --dim:   #8A8477;
+  --rule:  rgba(14,13,11,.16);
+  --rule-strong: rgba(14,13,11,.5);
+  --accent: #FF5B14;
+
+  --font-display: 'Fraunces', 'Times New Roman', serif;
+  --font-sans: 'Inter Tight', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --maxw: 1440px;
+  --pad-x: clamp(20px, 4vw, 64px);
+
+  --fs-hero:    clamp(56px, 14vw, 220px);
+  --fs-huge:    clamp(48px, 11vw, 168px);
+  --fs-xl:      clamp(40px, 8vw, 128px);
+  --fs-lg:      clamp(30px, 5vw, 72px);
+  --fs-md:      clamp(22px, 2.6vw, 40px);
+  --fs-body:    clamp(17px, 1.25vw, 21px);
+  --fs-small:   clamp(12px, 0.9vw, 13px);
+
+  --ease: cubic-bezier(.2,.7,.15,1);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: 1.35;
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
+  font-feature-settings: "ss01","ss02","cv11","calt";
+}
+
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: .35;
+  mix-blend-mode: multiply;
+  background-image:
+    radial-gradient(rgba(14,13,11,.035) 1px, transparent 1px),
+    radial-gradient(rgba(14,13,11,.025) 1px, transparent 1px);
+  background-size: 3px 3px, 7px 7px;
+  background-position: 0 0, 1px 2px;
+}
+
+::selection { background: var(--accent); color: #fff; }
+
+a { color: inherit; text-decoration: none; }
+p { margin: 0; }
+em { font-style: italic; }
+strong { font-weight: 600; }
+button { font: inherit; cursor: pointer; background: none; border: none; color: inherit; }
+
+/* ============ NAV ============ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 18px var(--pad-x);
+  background: color-mix(in oklab, var(--paper) 86%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  letter-spacing: .02em;
+}
+.nav__brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  font-style: italic;
+}
+.nav__meta {
+  justify-self: center;
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--dim);
+}
+.nav__dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 80%, transparent);
+  animation: pulse 2.4s infinite;
+}
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 60%, transparent); }
+  70%  { box-shadow: 0 0 0 10px color-mix(in oklab, var(--accent) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 0%, transparent); }
+}
+.nav__cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  transition: background .25s var(--ease), color .25s var(--ease);
+}
+.nav__cta:hover { background: var(--ink); color: var(--paper); }
+
+@media (max-width: 720px) {
+  .nav { grid-template-columns: 1fr auto; gap: 12px; padding: 14px 20px; }
+  .nav__meta { display: none; }
+}
+
+/* ============ LAYOUT / SECTIONS ============ */
+main { padding-top: 0; position: relative; z-index: 2; }
+
+.section {
+  position: relative;
+  padding: clamp(100px, 12vh, 180px) var(--pad-x);
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+.section + .section {
+  border-top: 1px solid var(--rule);
+}
+
+.section__tag {
+  position: absolute;
+  top: clamp(28px, 6vh, 60px);
+  left: var(--pad-x);
+  right: var(--pad-x);
+  display: flex; justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--dim);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.section__tag span:first-child {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.section__title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: var(--fs-lg);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0 0 clamp(40px, 6vh, 88px);
+  color: var(--ink);
+}
+
+.mono { font-family: var(--font-mono); letter-spacing: .01em; }
+.small { font-size: var(--fs-small); }
+.dim { color: var(--dim); }
+.accent { color: var(--accent); }
+.paren { color: var(--dim); font-size: .85em; }
+
+/* ============ REVEAL ============ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .9s var(--ease), transform 1s var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reduce-motion [data-reveal] { opacity: 1 !important; transform: none !important; }
+
+/* ============ §01 HERO ============ */
+.hero {
+  min-height: 100vh;
+  padding-top: clamp(120px, 18vh, 200px);
+  padding-bottom: clamp(60px, 10vh, 120px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: end;
+}
+.hero__headline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: var(--fs-hero);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+  margin: 0;
+  font-variation-settings: "SOFT" 30, "opsz" 144;
+}
+.hero__headline .line { display: block; }
+.hero__headline .line--italic {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink);
+  font-variation-settings: "SOFT" 80, "opsz" 144;
+}
+.hero__sub {
+  margin-top: clamp(60px, 10vh, 120px);
+  max-width: 720px;
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  font-weight: 400;
+}
+.hero__sub p + p { margin-top: 12px; }
+.hero__sub .pop {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(32px, 4vw, 56px);
+  letter-spacing: -0.02em;
+  margin-top: 18px;
+}
+.hero__sub .pop em {
+  color: var(--accent);
+  font-style: italic;
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .hero__grid { grid-template-columns: 1fr; }
+  .hero__sub { font-size: clamp(18px, 4.2vw, 26px); }
+}
+
+/* ============ §03 CÓMO FUNCIONA ============ */
+.funciona__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.funciona__list li {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 24px;
+  padding: clamp(28px, 4vh, 48px) 0;
+  border-bottom: 1px solid var(--rule);
+}
+.funciona__list li:first-child { border-top: 1px solid var(--rule); }
+.funciona__list li strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(20px, 2vw, 28px);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+.funciona__list li p {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  color: var(--dim);
+  line-height: 1.45;
+  max-width: 60ch;
+}
+
+@media (max-width: 720px) {
+  .funciona__list li { grid-template-columns: 36px 1fr; gap: 12px; }
+}
+
+/* ============ §04 QUÉ INCLUYE ============ */
+.incluye__list {
+  list-style: none;
+  margin: 0 0 clamp(60px, 10vh, 120px);
+  padding: 0;
+}
+.incluye__list li {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 24px;
+  align-items: baseline;
+  padding: clamp(22px, 3vh, 32px) 0;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(24px, 3.2vw, 44px);
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  transition: background .35s var(--ease), padding-left .35s var(--ease);
+}
+.incluye__list li:first-child { border-top: 1px solid var(--rule); }
+.incluye__list li:hover {
+  padding-left: 12px;
+  background: linear-gradient(to right, color-mix(in oklab, var(--accent) 8%, transparent), transparent 60%);
+}
+.incluye__list li q {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--dim);
+}
+.incluye__list li q::before, .incluye__list li q::after { content: '"'; }
+
+@media (max-width: 720px) {
+  .incluye__list li { grid-template-columns: 48px 1fr; gap: 14px; }
+}
+
+/* ============ §05 PARA QUIÉN ============ */
+.parawho__list {
+  list-style: none;
+  margin: 0 0 clamp(80px, 12vh, 140px);
+  padding: 0;
+  max-width: 1200px;
+}
+.parawho__list li {
+  font-family: var(--font-sans);
+  font-size: clamp(20px, 2.4vw, 30px);
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.parawho__list li:first-child { border-top: 1px solid var(--rule); }
+.parawho__list .pull {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-style: italic;
+  color: var(--accent);
+  font-size: 1.1em;
+}
+.parawho__list .pull::before, .parawho__list .pull::after { content: '"'; }
+
+.sino {
+  margin: clamp(60px, 10vh, 120px) 0;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 4vh, 48px);
+}
+.sino__row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: clamp(16px, 4vw, 40px);
+  align-items: baseline;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: clamp(26px, 4.2vw, 60px);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  padding-bottom: clamp(20px, 3vh, 40px);
+  border-bottom: 1px solid var(--rule);
+}
+.sino__label { color: var(--ink); }
+.sino__verdict {
+  font-weight: 900;
+  font-style: italic;
+  display: inline-flex;
+  align-items: baseline;
+  gap: clamp(10px, 2vw, 24px);
+  white-space: nowrap;
+}
+.sino__bar {
+  display: inline-block;
+  height: 0.08em;
+  background: var(--ink);
+  width: 0;
+  transition: width 1.2s var(--ease);
+  align-self: center;
+  transform: translateY(-0.1em);
+}
+.sino__row--no .sino__verdict { color: var(--ink); }
+.sino__row--si .sino__verdict { color: var(--accent); }
+.sino__row--si .sino__bar { background: var(--accent); }
+.sino__row.is-visible .sino__bar { width: clamp(40px, 14vw, 180px); }
+.reduce-motion .sino__bar { width: clamp(40px, 14vw, 180px) !important; }
+
+@media (max-width: 720px) {
+  .sino__row { grid-template-columns: 1fr; gap: 6px; }
+}
+
+/* ============ §06 INVERSIÓN ============ */
+.inversion {
+  padding-top: clamp(100px, 18vh, 220px);
+  padding-bottom: clamp(100px, 18vh, 220px);
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.inversion__stack {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) minmax(200px, auto);
+  gap: clamp(20px, 3vw, 60px);
+  align-items: center;
+}
+.inversion__label {
+  color: var(--dim);
+  font-size: var(--fs-small);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.inversion__figure {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(80px, 13vw, 260px);
+  letter-spacing: -0.06em;
+  line-height: 0.82;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.05em;
+  color: var(--ink);
+  font-variation-settings: "SOFT" 10, "opsz" 144;
+  min-width: 0;
+}
+.inversion__cur {
+  font-weight: 400;
+  font-style: italic;
+  color: var(--accent);
+  font-size: 0.55em;
+  line-height: 1;
+  margin-top: 0.08em;
+}
+.inversion__rules {
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  line-height: 1.35;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: clamp(280px, 30vw, 480px);
+}
+.inversion__rules .dash { color: var(--accent); margin-right: 10px; }
+
+@media (max-width: 900px) {
+  .inversion__stack { grid-template-columns: 1fr; gap: 30px; }
+  .inversion__label { writing-mode: horizontal-tb; transform: none; }
+}
+
+/* ============ DIAGNÓSTICO PAGE ============ */
+.diag__entrada {
+  margin-top: clamp(60px, 10vh, 100px);
+  padding: clamp(32px, 5vw, 56px);
+  border: 1px solid var(--rule-strong);
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.diag__entrada p {
+  margin: 0;
+  font-size: var(--fs-body);
+  line-height: 1.45;
+}
+.diag__entrada-price {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(48px, 8vw, 96px);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--accent) !important;
+}
+
+/* ============ §07 CTA ============ */
+.cta {
+  padding-top: clamp(120px, 20vh, 220px);
+  padding-bottom: clamp(80px, 12vh, 140px);
+  text-align: left;
+}
+.cta__frame {
+  border: 1px solid var(--ink);
+  padding: clamp(40px, 8vw, 100px);
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.cta__small {
+  color: var(--dim);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin-bottom: 24px;
+}
+.cta__line {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(64px, 13vw, 200px);
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  margin: 0;
+  font-variation-settings: "SOFT" 20, "opsz" 144;
+}
+.cta__line--accent {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+  padding-left: 0.5em;
+}
+.cta__body {
+  margin: clamp(30px, 5vh, 60px) 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  max-width: 780px;
+}
+.cta__body p + p { margin-top: 6px; }
+.cta__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 34px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(20px, 2vw, 28px);
+  letter-spacing: -0.02em;
+  border-radius: 0;
+  transition: background .3s var(--ease), color .3s var(--ease), transform .3s var(--ease);
+  margin-top: 20px;
+}
+.cta__btn:hover { background: var(--accent); color: var(--ink); }
+.cta__btn:hover .cta__arrow { transform: translateX(6px); }
+.cta__arrow { transition: transform .3s var(--ease); font-style: italic; font-weight: 400; }
+
+/* ============ FOOTER ============ */
+.foot {
+  padding: 40px var(--pad-x);
+  border-top: 1px solid var(--rule);
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+.foot__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--dim);
+  letter-spacing: .02em;
+}
+.foot__row span:first-child { color: var(--ink); }
+
+/* ============ NAV ACTIVE LINK ============ */
+.nav__active {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ============ WIDE SCREENS (1600px+) ============ */
+@media (min-width: 1600px) {
+  :root { --fs-hero: clamp(140px, 11vw, 200px); }
+  .inversion__figure { font-size: clamp(80px, 9vw, 200px); }
+}
+
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Principal">
+  <a href="index.html" class="nav__brand"><span>Oriol Ibars</span></a>
+  <div class="nav__meta">
+    <span class="nav__dot" aria-hidden="true"></span>
+    <span class="nav__active">Diagnóstico estratégico</span>
+  </div>
+  <a href="https://calendly.com/oriolibars/30min" class="nav__cta" target="_blank" rel="noopener">Solicitar conversación <span aria-hidden="true">→</span></a>
+</nav>
+
+<main>
+
+  <!-- §01 HERO -->
+  <section class="hero section" id="inicio">
+    <div class="section__tag"><span>§01</span><span>Diagnóstico</span></div>
+    <div class="hero__grid">
+      <h1 class="hero__headline">
+        <span class="line" data-reveal="">Sabes que</span>
+        <span class="line" data-reveal="">algo no</span>
+        <span class="line line--italic" data-reveal="">cuadra.</span>
+      </h1>
+    </div>
+    <div class="hero__sub">
+      <p>No es tráfico. No es producto. No es equipo.</p>
+      <p class="pop">Es que no sabes exactamente dónde estás <em>perdiendo dinero</em>.</p>
+    </div>
+  </section>
+
+  <!-- §02 QUÉ ES -->
+  <section class="section" data-section="02">
+    <div class="section__tag"><span>§02</span><span>Qué es</span></div>
+    <h2 class="section__title" data-reveal="">Qué es el diagnóstico</h2>
+    <div class="que__lede" style="font-family: var(--font-display); font-weight: 400; font-style: italic; font-size: var(--fs-lg); line-height: 1.02; letter-spacing: -0.025em; max-width: 1100px;">
+      <p data-reveal="">No es una auditoría. No es un informe de 80 páginas.</p>
+      <p data-reveal="">Es criterio ejecutable: saber exactamente qué está costando dinero y qué mover primero.</p>
+    </div>
+  </section>
+
+  <!-- §03 CÓMO FUNCIONA -->
+  <section class="section" data-section="03">
+    <div class="section__tag"><span>§03</span><span>Proceso</span></div>
+    <h2 class="section__title" data-reveal="">Cómo funciona</h2>
+    <ol class="funciona__list">
+      <li data-reveal="">
+        <span class="mono small dim">01</span>
+        <div>
+          <strong>Hablamos 30 minutos.</strong>
+          <p>Sin presentaciones. Sin decks. Cuéntame qué no cuadra. Si no veo encaje, te lo digo en la llamada.</p>
+        </div>
+      </li>
+      <li data-reveal="">
+        <span class="mono small dim">02</span>
+        <div>
+          <strong>Si encaja, miro de verdad.</strong>
+          <p>Datos, funnel, propuesta de valor, pricing, journeys, roadmap activo. No un cuestionario. Revisión real.</p>
+        </div>
+      </li>
+      <li data-reveal="">
+        <span class="mono small dim">03</span>
+        <div>
+          <strong>En menos de una semana identifico dónde se pierde dinero.</strong>
+          <p>No hipótesis. Patrones que he visto suficientes veces como para reconocerlos rápido.</p>
+        </div>
+      </li>
+      <li data-reveal="">
+        <span class="mono small dim">04</span>
+        <div>
+          <strong>Te entrego prioridades claras.</strong>
+          <p>Qué tocar primero. Qué ignorar. Por qué. Con números cuando los hay.</p>
+        </div>
+      </li>
+      <li data-reveal="">
+        <span class="mono small dim">05</span>
+        <div>
+          <strong>Tu equipo puede ejecutar sin depender de mí.</strong>
+          <p>No creo dependencia. Dejo criterio, foco y una hoja de ruta ejecutable.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- §04 QUÉ INCLUYE -->
+  <section class="section" data-section="04">
+    <div class="section__tag"><span>§04</span><span>Entregable</span></div>
+    <h2 class="section__title" data-reveal="">Qué incluye</h2>
+    <ol class="incluye__list">
+      <li data-reveal="">
+        <span class="mono small dim">01</span>
+        <span>Dónde se va el dinero. Exactamente.</span>
+      </li>
+      <li data-reveal="">
+        <span class="mono small dim">02</span>
+        <span>Fricciones que están matando la conversión <span class="paren">(y nadie ve)</span></span>
+      </li>
+      <li data-reveal="">
+        <span class="mono small dim">03</span>
+        <span>Qué tres cosas, si las cambias esta semana, mueven la aguja.</span>
+      </li>
+      <li data-reveal="">
+        <span class="mono small dim">04</span>
+        <span>Decisiones que se toman <q>porque siempre se ha hecho así</q></span>
+      </li>
+      <li data-reveal="">
+        <span class="mono small dim">05</span>
+        <span>Una hoja de ruta clara que tu equipo puede ejecutar sin depender de mí.</span>
+      </li>
+    </ol>
+  </section>
+
+  <!-- §05 PARA QUIÉN -->
+  <section class="section" data-section="05">
+    <div class="section__tag"><span>§05</span><span>Para quién</span></div>
+    <h2 class="section__title" data-reveal="">Para quién es</h2>
+    <ul class="parawho__list">
+      <li data-reveal="">Negocios digitales que ya facturan. Tracción real. Equipo ejecutando.</li>
+      <li data-reveal="">CEOs, founders o directores de producto que saben que algo no cuadra pero no saben exactamente dónde.</li>
+      <li data-reveal="">Han probado cosas este trimestre y la mayoría no ha movido nada.</li>
+      <li data-reveal="">Necesitan a alguien que diga <q class="pull">esto no se toca — esto sí se toca</q></li>
+    </ul>
+    <div class="sino">
+      <div class="sino__row sino__row--no" data-reveal="">
+        <span class="sino__label">Si tu problema es hacer más,</span>
+        <span class="sino__verdict"><span class="sino__bar" data-bar=""></span>no te ayudaré.</span>
+      </div>
+      <div class="sino__row sino__row--si" data-reveal="">
+        <span class="sino__label">Si tu problema es decidir mejor,</span>
+        <span class="sino__verdict"><span class="sino__bar" data-bar=""></span>sí te ayudaré.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- §06 INVERSIÓN -->
+  <section class="section inversion" data-section="06">
+    <div class="section__tag"><span>§06</span><span>Inversión</span></div>
+    <div class="inversion__stack">
+      <p class="inversion__label mono">Inversión mínima</p>
+      <div class="inversion__figure" data-reveal="">
+        <span class="inversion__num">10.000</span>
+        <span class="inversion__cur">€</span>
+      </div>
+      <div class="inversion__rules">
+        <p data-reveal=""><span class="dash">—</span> No es un pack.</p>
+        <p data-reveal=""><span class="dash">—</span> No es negociable.</p>
+        <p data-reveal=""><span class="dash">—</span> No todos los proyectos encajan.</p>
+        <p data-reveal=""><span class="dash">—</span> Si buscas una revisión rápida, no soy la opción.</p>
+      </div>
+    </div>
+
+    <div class="diag__entrada" data-reveal="">
+      <p class="mono small dim">— Primera mirada estratégica</p>
+      <p>¿No tienes claro si tu proyecto encaja? Antes del diagnóstico completo hay una opción de entrada: <strong>2 horas + revisión previa + memo con las 3 prioridades principales.</strong></p>
+      <p class="diag__entrada-price">1.500€</p>
+      <p class="dim" style="font-size: var(--fs-small); margin-top: 8px;">Si después tiene sentido un diagnóstico completo, lo vemos. Sin compromiso.</p>
+    </div>
+  </section>
+
+  <!-- §07 CTA -->
+  <section class="section cta" data-section="07">
+    <div class="section__tag"><span>§07</span><span>Contacto</span></div>
+    <div class="cta__frame">
+      <p class="cta__small mono">30 minutos.</p>
+      <p class="cta__line" data-reveal="">O encaja,</p>
+      <p class="cta__line cta__line--accent" data-reveal="">o no.</p>
+      <div class="cta__body">
+        <p data-reveal="">No persigo. No vendo en la llamada.</p>
+        <p data-reveal="">O veo el problema y sé cómo arreglarlo,</p>
+        <p data-reveal="">o te digo que no puedo ayudarte.</p>
+      </div>
+      <a class="cta__btn" href="https://calendly.com/oriolibars/30min" target="_blank" rel="noopener" data-reveal="">
+        <span>Solicitar conversación</span>
+        <span class="cta__arrow" aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <div class="foot__row">
+      <span>© 2026 Oriol Ibars</span>
+      <span class="dim">25 años. 250 proyectos. Mirando lo que nadie quiere mirar.</span>
+      <span class="mono small dim">v.2026.04</span>
+    </div>
+  </footer>
+
+</main>
+
+<!-- Tweaks -->
+<div id="tweaks" class="tweaks" hidden="">
+  <div class="tweaks__head">
+    <span>Tweaks</span>
+    <button id="tweaks-close" aria-label="Cerrar">×</button>
+  </div>
+  <div class="tweaks__body">
+    <label>
+      <span>Acento</span>
+      <input type="color" id="tw-accent">
+    </label>
+    <label>
+      <span>Fondo</span>
+      <select id="tw-bg">
+        <option value="paper">Paper (off-white)</option>
+        <option value="bone">Bone</option>
+        <option value="snow">Snow</option>
+        <option value="ink">Ink (invertido)</option>
+      </select>
+    </label>
+    <label>
+      <span>Display</span>
+      <select id="tw-display">
+        <option value="fraunces">Fraunces (serif)</option>
+        <option value="inter">Inter Tight (sans)</option>
+      </select>
+    </label>
+    <label class="tweaks__toggle">
+      <span>Reducir movimiento</span>
+      <input type="checkbox" id="tw-reduce">
+    </label>
+  </div>
+</div>
+
+<script>
+/* Oriol Ibars — interactions */
+
+(function() {
+  'use strict';
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ===== Reveal on scroll ===== */
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  revealEls.forEach((el) => {
+    const parent = el.parentElement;
+    if (!parent) return;
+    const siblings = Array.from(parent.querySelectorAll(':scope > [data-reveal]'));
+    const idx = siblings.indexOf(el);
+    if (idx > 0) el.style.setProperty('--reveal-delay', (idx * 90) + 'ms');
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+  revealEls.forEach((el) => io.observe(el));
+
+  /* ===== Sino bars ===== */
+  document.querySelectorAll('.sino__row').forEach((row) => {
+    const rio = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          rio.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    rio.observe(row);
+  });
+
+  /* ===== Edit mode / Tweaks ===== */
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+    "accent": "#FF5B14",
+    "bg": "paper",
+    "display": "fraunces",
+    "reduce": false
+  }/*EDITMODE-END*/;
+
+  const tweaks = document.getElementById('tweaks');
+  const tAccent = document.getElementById('tw-accent');
+  const tBg = document.getElementById('tw-bg');
+  const tDisplay = document.getElementById('tw-display');
+  const tReduce = document.getElementById('tw-reduce');
+  const tClose = document.getElementById('tweaks-close');
+
+  function applyTweaks(t) {
+    document.documentElement.style.setProperty('--accent', t.accent);
+    document.body.classList.remove('bg-paper','bg-bone','bg-snow','bg-ink');
+    document.body.classList.add('bg-' + t.bg);
+    document.body.classList.remove('display-fraunces','display-inter');
+    document.body.classList.add('display-' + t.display);
+    document.body.classList.toggle('reduce-motion', !!t.reduce);
+    if (tAccent) tAccent.value = t.accent;
+    if (tBg) tBg.value = t.bg;
+    if (tDisplay) tDisplay.value = t.display;
+    if (tReduce) tReduce.checked = !!t.reduce;
+  }
+
+  let current = { ...TWEAK_DEFAULTS };
+  applyTweaks(current);
+
+  function send(patch) {
+    current = { ...current, ...patch };
+    applyTweaks(current);
+    try {
+      window.parent.postMessage({ type: '__edit_mode_set_keys', edits: patch }, '*');
+    } catch (_) {}
+  }
+
+  if (tAccent) tAccent.addEventListener('input', (e) => send({ accent: e.target.value }));
+  if (tBg) tBg.addEventListener('change', (e) => send({ bg: e.target.value }));
+  if (tDisplay) tDisplay.addEventListener('change', (e) => send({ display: e.target.value }));
+  if (tReduce) tReduce.addEventListener('change', (e) => send({ reduce: e.target.checked }));
+  if (tClose) tClose.addEventListener('click', () => {
+    tweaks.hidden = true;
+    try { window.parent.postMessage({ type: '__deactivate_edit_mode' }, '*'); } catch(_) {}
+  });
+
+  window.addEventListener('message', (ev) => {
+    const data = ev.data;
+    if (!data || typeof data !== 'object') return;
+    if (data.type === '__activate_edit_mode') tweaks.hidden = false;
+    if (data.type === '__deactivate_edit_mode') tweaks.hidden = true;
+  });
+
+  try {
+    window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+  } catch (_) {}
+
+})();
+</script>
+
+</body></html>
