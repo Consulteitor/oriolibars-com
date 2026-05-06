@@ -1048,7 +1048,62 @@ main { padding-top: 0; position: relative; z-index: 2; }
   .promises { grid-template-columns: 1fr; }
 }
 
-/* ============ §11 CTA ============ */
+/* ============ §11 REFFERABLE ============ */
+.refferable__inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: clamp(40px, 6vw, 96px);
+  align-items: center;
+  padding: clamp(40px, 6vh, 72px) 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.refferable__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(32px, 4vw, 56px);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0 0 20px;
+  color: var(--ink);
+}
+.refferable__body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  color: var(--dim);
+  line-height: 1.5;
+  max-width: 60ch;
+  margin: 0 0 24px;
+}
+.refferable__link {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  letter-spacing: .04em;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity .2s;
+}
+.refferable__link:hover { opacity: .7; }
+.refferable__tag {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(80px, 14vw, 200px);
+  letter-spacing: -0.05em;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--rule-strong);
+  user-select: none;
+  pointer-events: none;
+}
+
+@media (max-width: 720px) {
+  .refferable__inner { grid-template-columns: 1fr; }
+  .refferable__tag { display: none; }
+}
+
+/* ============ §12 CTA ============ */
 .cta {
   padding-top: clamp(120px, 20vh, 220px);
   padding-bottom: clamp(80px, 12vh, 140px);
@@ -1618,9 +1673,27 @@ body.display-inter .stat__num {
     </div>
   </section>
 
-  <!-- §11 CTA -->
-  <section class="section cta" data-section="11" data-screen-label="11 CTA">
-    <div class="section__tag"><span>§11</span><span>Contacto</span></div>
+  <!-- §11 REFFERABLE -->
+  <section class="section refferable" data-section="11" data-screen-label="11 Refferable">
+    <div class="section__tag"><span>§11</span><span>Refferable</span></div>
+
+    <div class="refferable__inner">
+      <div class="refferable__text" data-reveal="">
+        <h2 class="refferable__title">Refferable</h2>
+        <p class="refferable__body">Las decisiones de compra se desplazan de Google a ChatGPT, Perplexity y Gemini. Refferable es mi línea especializada en posicionamiento conversacional: ayudar a marcas B2B a ser citadas, recomendadas y entendidas por los modelos de lenguaje.</p>
+        <a href="https://refferable.com" class="refferable__link" target="_blank" rel="noopener">
+          Ver Refferable <span aria-hidden="true">→</span>
+        </a>
+      </div>
+      <div class="refferable__tag" data-reveal="" aria-hidden="true">
+        AEO
+      </div>
+    </div>
+  </section>
+
+  <!-- §12 CTA -->
+  <section class="section cta" data-section="12" data-screen-label="12 CTA">
+    <div class="section__tag"><span>§12</span><span>Contacto</span></div>
 
     <div class="cta__frame">
       <p class="cta__small mono" data-reveal="">30 minutos.</p>
