@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter+Tight:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:wght@300..700&display=swap">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Refferable — Posicionamiento conversacional</title>
+<meta name="description" content="Ayudo a marcas B2B a ser citadas, recomendadas y entendidas por ChatGPT, Perplexity y Gemini.">
+
+<style>
+:root {
+  --paper: #F2EEE6;
+  --ink:   #0E0D0B;
+  --ink-2: #1A1815;
+  --dim:   #8A8477;
+  --rule:  rgba(14,13,11,.16);
+  --rule-strong: rgba(14,13,11,.5);
+  --accent: #FF5B14;
+  --font-display: 'Fraunces', 'Times New Roman', serif;
+  --font-sans: 'Inter Tight', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --maxw: 1440px;
+  --pad-x: clamp(20px, 4vw, 64px);
+  --fs-hero:    clamp(56px, 14vw, 220px);
+  --fs-lg:      clamp(30px, 5vw, 72px);
+  --fs-md:      clamp(22px, 2.6vw, 40px);
+  --fs-body:    clamp(17px, 1.25vw, 21px);
+  --fs-small:   clamp(12px, 0.9vw, 13px);
+  --ease: cubic-bezier(.2,.7,.15,1);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { background: var(--paper); color: var(--ink); -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: 1.35;
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
+  font-feature-settings: "ss01","ss02","cv11","calt";
+}
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 1; opacity: .35; mix-blend-mode: multiply;
+  background-image: radial-gradient(rgba(14,13,11,.035) 1px,transparent 1px), radial-gradient(rgba(14,13,11,.025) 1px,transparent 1px);
+  background-size: 3px 3px, 7px 7px;
+  background-position: 0 0, 1px 2px;
+}
+::selection { background: var(--accent); color: #fff; }
+a { color: inherit; text-decoration: none; }
+p { margin: 0; }
+em { font-style: italic; }
+strong { font-weight: 600; }
+button { font: inherit; cursor: pointer; background: none; border: none; color: inherit; }
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  display: grid; grid-template-columns: auto 1fr auto;
+  align-items: center; gap: 24px; padding: 18px var(--pad-x);
+  background: color-mix(in oklab, var(--paper) 86%, transparent);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-mono); font-size: var(--fs-small); letter-spacing: .02em;
+}
+.nav__brand { font-family: var(--font-display); font-weight: 600; font-size: 18px; letter-spacing: -0.01em; font-style: italic; }
+.nav__links { display: flex; align-items: center; justify-content: center; gap: clamp(24px, 3vw, 48px); }
+.nav__link { font-family: var(--font-mono); font-size: var(--fs-small); letter-spacing: .04em; color: var(--dim); text-decoration: none; transition: color .2s; }
+.nav__link:hover { color: var(--ink); }
+.nav__link.is-active { color: var(--ink); font-weight: 600; }
+.nav__cta { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid var(--ink); border-radius: 999px; transition: background .25s var(--ease), color .25s var(--ease); }
+.nav__cta:hover { background: var(--ink); color: var(--paper); }
+@media (max-width: 720px) {
+  .nav { grid-template-columns: 1fr auto; gap: 12px; padding: 14px 20px; }
+  .nav__links { display: none; }
+}
+
+/* LAYOUT */
+main { padding-top: 0; position: relative; z-index: 2; }
+
+/* REVEAL */
+[data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity .9s var(--ease), transform 1s var(--ease); transition-delay: var(--reveal-delay, 0ms); }
+[data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+.reduce-motion [data-reveal] { opacity: 1 !important; transform: none !important; }
+
+/* REFFERABLE PAGE */
+.ref__wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(140px, 20vh, 220px) var(--pad-x) clamp(80px, 12vh, 140px);
+}
+
+.ref__tag {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 32px;
+}
+
+.ref__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(40px, 7vw, 110px);
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  margin: 0 0 clamp(40px, 7vh, 80px);
+  font-variation-settings: "SOFT" 20, "opsz" 144;
+  max-width: 900px;
+}
+
+.ref__title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
+}
+
+.ref__lede {
+  font-family: var(--font-sans);
+  font-size: var(--fs-md);
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  max-width: 700px;
+  margin-bottom: clamp(60px, 10vh, 100px);
+}
+.ref__lede p + p { margin-top: 20px; }
+
+.ref__divider {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 0 0 clamp(48px, 8vh, 80px);
+}
+
+.ref__prox {
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 4vw, 64px);
+  flex-wrap: wrap;
+}
+
+.ref__prox-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--dim);
+  white-space: nowrap;
+}
+
+.ref__prox-text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(22px, 2.8vw, 40px);
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.ref__cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 32px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(18px, 1.8vw, 26px);
+  letter-spacing: -0.02em;
+  transition: background .3s var(--ease), color .3s var(--ease);
+  margin-top: clamp(28px, 4vh, 48px);
+}
+.ref__cta-btn:hover { background: var(--accent); color: var(--ink); }
+.ref__cta-btn:hover .ref__arrow { transform: translateX(6px); }
+.ref__arrow { transition: transform .3s var(--ease); font-style: italic; font-weight: 400; }
+
+/* ENGINES GRID */
+.ref__engines {
+  display: flex;
+  gap: clamp(16px, 2vw, 32px);
+  flex-wrap: wrap;
+  margin-bottom: clamp(40px, 6vh, 64px);
+}
+.ref__engine {
+  border: 1px solid var(--rule);
+  padding: 14px 20px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  letter-spacing: .04em;
+  color: var(--dim);
+}
+
+/* FOOTER */
+.foot { padding: 40px var(--pad-x); border-top: 1px solid var(--rule); max-width: var(--maxw); margin: 0 auto; }
+.foot__row { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; font-family: var(--font-mono); font-size: var(--fs-small); color: var(--dim); letter-spacing: .02em; }
+.foot__row span:first-child { color: var(--ink); }
+
+/* TWEAKS */
+.tweaks { position: fixed; right: 20px; bottom: 20px; width: 260px; background: var(--paper); border: 1px solid var(--ink); z-index: 100; font-family: var(--font-mono); font-size: 12px; box-shadow: 6px 6px 0 var(--ink); }
+.tweaks__head { padding: 10px 14px; border-bottom: 1px solid var(--ink); background: var(--ink); color: var(--paper); display: flex; justify-content: space-between; align-items: center; text-transform: uppercase; letter-spacing: .08em; }
+.tweaks__head button { color: var(--paper); font-size: 20px; line-height: 1; padding: 0 4px; }
+.tweaks__body { padding: 14px; display: flex; flex-direction: column; gap: 14px; }
+.tweaks__body label { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+.tweaks__body input[type="color"] { width: 34px; height: 24px; border: 1px solid var(--ink); background: none; padding: 0; }
+.tweaks__body select, .tweaks__body input[type="checkbox"] { font: inherit; }
+.tweaks__body select { border: 1px solid var(--ink); padding: 4px 6px; background: var(--paper); }
+body.bg-bone { --paper: #EFE8DA; }
+body.bg-snow { --paper: #F7F5F0; }
+body.bg-ink { --paper: #0E0D0B; --ink: #F2EEE6; --dim: #75706A; --rule: rgba(242,238,230,.18); }
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Principal">
+  <a href="/" class="nav__brand"><span>Oriol Ibars</span></a>
+  <div class="nav__links">
+    <a href="/diagnostico.html" class="nav__link">Diagnóstico</a>
+    <a href="/refferable.html" class="nav__link">Refferable</a>
+    <a href="/contacto.html" class="nav__link">Contacto</a>
+  </div>
+  <a href="/contacto.html" class="nav__cta">Hablamos <span aria-hidden="true">→</span></a>
+</nav>
+
+<main>
+  <div class="ref__wrap">
+
+    <p class="ref__tag" data-reveal="">Refferable</p>
+
+    <h1 class="ref__title" data-reveal="">Las decisiones de compra<br>ya no empiezan<br><em>en Google.</em></h1>
+
+    <div class="ref__engines" data-reveal="">
+      <span class="ref__engine">ChatGPT</span>
+      <span class="ref__engine">Perplexity</span>
+      <span class="ref__engine">Gemini</span>
+      <span class="ref__engine">Claude</span>
+    </div>
+
+    <div class="ref__lede">
+      <p data-reveal="">Cuando alguien le pregunta a ChatGPT o Perplexity qué herramienta usar, qué agencia contratar o a quién llamar — tu marca tiene que aparecer. No como un anuncio. Como la respuesta.</p>
+      <p data-reveal="">Refferable es el servicio con el que trabajo el posicionamiento conversacional de marcas B2B: que los modelos te citen, te recomienden y te entiendan correctamente.</p>
+    </div>
+
+    <hr class="ref__divider">
+
+    <div class="ref__prox" data-reveal="">
+      <span class="ref__prox-label">Estado</span>
+      <span class="ref__prox-text">Próximamente. Plazas muy limitadas.</span>
+    </div>
+
+    <a class="ref__cta-btn" href="/contacto.html" data-reveal="">
+      <span>Apuntarse a la lista</span>
+      <span class="ref__arrow" aria-hidden="true">→</span>
+    </a>
+
+  </div>
+
+  <footer class="foot">
+    <div class="foot__row">
+      <span>© 2026 Oriol Ibars</span>
+      <span>25 años. 250 proyectos. Mirando lo que nadie quiere mirar.</span>
+      <span>v.2026.04</span>
+    </div>
+  </footer>
+</main>
+
+<div id="tweaks" class="tweaks" hidden="">
+  <div class="tweaks__head"><span>Tweaks</span><button id="tweaks-close" aria-label="Cerrar">×</button></div>
+  <div class="tweaks__body">
+    <label><span>Acento</span><input type="color" id="tw-accent"></label>
+    <label><span>Fondo</span><select id="tw-bg"><option value="paper">Paper</option><option value="bone">Bone</option><option value="snow">Snow</option><option value="ink">Ink</option></select></label>
+    <label><span>Display</span><select id="tw-display"><option value="fraunces">Fraunces</option><option value="inter">Inter Tight</option></select></label>
+    <label><span>Reducir movimiento</span><input type="checkbox" id="tw-reduce"></label>
+  </div>
+</div>
+
+<script>
+(function() {
+  'use strict';
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  revealEls.forEach((el) => {
+    const parent = el.parentElement;
+    if (!parent) return;
+    const siblings = Array.from(parent.querySelectorAll(':scope > [data-reveal]'));
+    const idx = siblings.indexOf(el);
+    if (idx > 0) el.style.setProperty('--reveal-delay', (idx * 90) + 'ms');
+  });
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  revealEls.forEach((el) => io.observe(el));
+
+  const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{"accent":"#FF5B14","bg":"paper","display":"fraunces","reduce":false}/*EDITMODE-END*/;
+  const tweaks = document.getElementById('tweaks');
+  const tAccent = document.getElementById('tw-accent');
+  const tBg = document.getElementById('tw-bg');
+  const tDisplay = document.getElementById('tw-display');
+  const tReduce = document.getElementById('tw-reduce');
+  const tClose = document.getElementById('tweaks-close');
+  function applyTweaks(t) {
+    document.documentElement.style.setProperty('--accent', t.accent);
+    document.body.classList.remove('bg-paper','bg-bone','bg-snow','bg-ink');
+    document.body.classList.add('bg-' + t.bg);
+    if (tAccent) tAccent.value = t.accent;
+    if (tBg) tBg.value = t.bg;
+  }
+  applyTweaks(TWEAK_DEFAULTS);
+  if (tClose) tClose.addEventListener('click', () => { tweaks.hidden = true; });
+
+  // Active nav link
+  const currentPath = window.location.pathname;
+  document.querySelectorAll('.nav__link').forEach(link => {
+    if (link.getAttribute('href') === currentPath) link.classList.add('is-active');
+  });
+})();
+</script>
+</body></html>

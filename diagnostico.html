@@ -106,22 +106,22 @@ button { font: inherit; cursor: pointer; background: none; border: none; color: 
   letter-spacing: -0.01em;
   font-style: italic;
 }
-.nav__meta {
-  justify-self: center;
-  display: inline-flex; align-items: center; gap: 10px;
+.nav__links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(24px, 3vw, 48px);
+}
+.nav__link {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  letter-spacing: .04em;
   color: var(--dim);
+  text-decoration: none;
+  transition: color .2s;
 }
-.nav__dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 80%, transparent);
-  animation: pulse 2.4s infinite;
-}
-@keyframes pulse {
-  0%   { box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 60%, transparent); }
-  70%  { box-shadow: 0 0 0 10px color-mix(in oklab, var(--accent) 0%, transparent); }
-  100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 0%, transparent); }
-}
+.nav__link:hover { color: var(--ink); }
+.nav__link.is-active { color: var(--ink); font-weight: 600; }
 .nav__cta {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 8px 14px;
@@ -133,7 +133,7 @@ button { font: inherit; cursor: pointer; background: none; border: none; color: 
 
 @media (max-width: 720px) {
   .nav { grid-template-columns: 1fr auto; gap: 12px; padding: 14px 20px; }
-  .nav__meta { display: none; }
+  .nav__links { display: none; }
 }
 
 /* ============ LAYOUT / SECTIONS ============ */
@@ -482,12 +482,13 @@ body.bg-ink { --paper: #0E0D0B; --ink: #F2EEE6; --ink-2: #E7E3D8; --dim: #75706A
 <body>
 
 <nav class="nav" aria-label="Principal">
-  <a href="index.html" class="nav__brand"><span>Oriol Ibars</span></a>
-  <div class="nav__meta">
-    <span class="nav__dot" aria-hidden="true"></span>
-    <span>Diagnóstico estratégico</span>
+  <a href="/" class="nav__brand"><span>Oriol Ibars</span></a>
+  <div class="nav__links">
+    <a href="/diagnostico.html" class="nav__link">Diagnóstico</a>
+    <a href="/refferable.html" class="nav__link">Refferable</a>
+    <a href="/contacto.html" class="nav__link">Contacto</a>
   </div>
-  <a href="https://calendly.com/oriolibars/30min" class="nav__cta" target="_blank" rel="noopener">Solicitar conversación <span aria-hidden="true">→</span></a>
+  <a href="/contacto.html" class="nav__cta">Hablamos <span aria-hidden="true">→</span></a>
 </nav>
 
 <main>
@@ -702,6 +703,14 @@ body.bg-ink { --paper: #0E0D0B; --ink: #F2EEE6; --ink-2: #E7E3D8; --dim: #75706A
   });
 
   try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch (_) {}
+
+  // Active nav link
+  const currentPath = window.location.pathname;
+  document.querySelectorAll('.nav__link').forEach(link => {
+    if (link.getAttribute('href') === currentPath) {
+      link.classList.add('is-active');
+    }
+  });
 })();
 </script>
 

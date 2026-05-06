@@ -143,22 +143,22 @@ button { font: inherit; cursor: pointer; background: none; border: none; color: 
   letter-spacing: -0.01em;
   font-style: italic;
 }
-.nav__meta {
-  justify-self: center;
-  display: inline-flex; align-items: center; gap: 10px;
+.nav__links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(24px, 3vw, 48px);
+}
+.nav__link {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  letter-spacing: .04em;
   color: var(--dim);
+  text-decoration: none;
+  transition: color .2s;
 }
-.nav__dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 80%, transparent);
-  animation: pulse 2.4s infinite;
-}
-@keyframes pulse {
-  0%   { box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 60%, transparent); }
-  70%  { box-shadow: 0 0 0 10px color-mix(in oklab, var(--accent) 0%, transparent); }
-  100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 0%, transparent); }
-}
+.nav__link:hover { color: var(--ink); }
+.nav__link.is-active { color: var(--ink); font-weight: 600; }
 .nav__cta {
   display: inline-flex; align-items: center; gap: 8px;
   padding: 8px 14px;
@@ -170,7 +170,7 @@ button { font: inherit; cursor: pointer; background: none; border: none; color: 
 
 @media (max-width: 720px) {
   .nav { grid-template-columns: 1fr auto; gap: 12px; padding: 14px 20px; }
-  .nav__meta { display: none; }
+  .nav__links { display: none; }
 }
 
 /* ============ LAYOUT / SECTIONS ============ */
@@ -768,7 +768,27 @@ main { padding-top: 0; position: relative; z-index: 2; }
   .sino__row { grid-template-columns: 1fr; gap: 6px; }
 }
 
-/* ============ §09 INVERSIÓN ============ */
+/* ============ §07 DIAGNÓSTICO PONT ============ */
+.diag__pont {
+  display: flex;
+  align-items: center;
+  gap: clamp(24px, 4vw, 64px);
+  padding: clamp(32px, 5vh, 56px) 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  flex-wrap: wrap;
+}
+.diag__pont-text {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(24px, 3vw, 40px);
+  letter-spacing: -0.02em;
+  margin: 0;
+  color: var(--ink);
+}
+
+/* ============ §08 INVERSIÓN (deprecated, kept for reference) ============ */
 .inversion {
   padding-top: clamp(100px, 18vh, 220px);
   padding-bottom: clamp(100px, 18vh, 220px);
@@ -1281,12 +1301,13 @@ body.display-inter .stat__num {
 
 <!-- Nav -->
 <nav class="nav" aria-label="Principal">
-  <a href="#inicio" class="nav__brand"><span>Oriol Ibars</span></a>
-  <div class="nav__meta">
-    <span class="nav__dot" aria-hidden="true"></span>
-    <span>Disponible · 2026</span>
+  <a href="/" class="nav__brand"><span>Oriol Ibars</span></a>
+  <div class="nav__links">
+    <a href="/diagnostico.html" class="nav__link">Diagnóstico</a>
+    <a href="/refferable.html" class="nav__link">Refferable</a>
+    <a href="/contacto.html" class="nav__link">Contacto</a>
   </div>
-  <a href="https://calendly.com/oriolibars/30min" class="nav__cta" target="_blank" rel="noopener">Solicitar conversación <span aria-hidden="true">→</span></a>
+  <a href="/contacto.html" class="nav__cta">Hablamos <span aria-hidden="true">→</span></a>
 </nav>
 
 <main>
@@ -1367,54 +1388,9 @@ body.display-inter .stat__num {
     </div>
   </section>
 
-  <!-- §04 CÓMO FUNCIONA -->
-  <section class="section comofunciona" data-section="04" data-screen-label="04 Cómo funciona">
-    <div class="section__tag"><span>§04</span><span>Proceso</span></div>
-
-    <h2 class="section__title" data-reveal="">Cómo funciona</h2>
-
-    <ol class="funciona__list">
-      <li data-reveal="">
-        <span class="mono small dim">01</span>
-        <div>
-          <strong>Hablamos 30 minutos.</strong>
-          <p>Sin presentaciones. Sin decks. Cuéntame qué no cuadra. Si no veo encaje, te lo digo en la llamada.</p>
-        </div>
-      </li>
-      <li data-reveal="">
-        <span class="mono small dim">02</span>
-        <div>
-          <strong>Si encaja, miro de verdad.</strong>
-          <p>Datos, funnel, propuesta de valor, pricing, journeys, roadmap activo. No un cuestionario. Revisión real.</p>
-        </div>
-      </li>
-      <li data-reveal="">
-        <span class="mono small dim">03</span>
-        <div>
-          <strong>En menos de una semana identifico dónde se pierde dinero.</strong>
-          <p>No hipótesis. Patrones que he visto suficientes veces como para reconocerlos rápido.</p>
-        </div>
-      </li>
-      <li data-reveal="">
-        <span class="mono small dim">04</span>
-        <div>
-          <strong>Te entrego prioridades claras.</strong>
-          <p>Qué tocar primero. Qué ignorar. Por qué. Con números cuando los hay.</p>
-        </div>
-      </li>
-      <li data-reveal="">
-        <span class="mono small dim">05</span>
-        <div>
-          <strong>Tu equipo puede ejecutar sin depender de mí.</strong>
-          <p>No creo dependencia. Dejo criterio, foco y una hoja de ruta ejecutable.</p>
-        </div>
-      </li>
-    </ol>
-  </section>
-
-  <!-- §05 FORMAS DE TRABAJAR -->
-  <section class="section formas" data-section="05" data-screen-label="05 Formas de trabajar">
-    <div class="section__tag"><span>§05</span><span>Formas de trabajar</span></div>
+  <!-- §04 FORMAS DE TRABAJAR -->
+  <section class="section formas" data-section="04" data-screen-label="04 Formas de trabajar">
+    <div class="section__tag"><span>§04</span><span>Formas de trabajar</span></div>
 
     <h2 class="section__title" data-reveal="">Formas de trabajar</h2>
 
@@ -1448,9 +1424,9 @@ body.display-inter .stat__num {
     </div>
   </section>
 
-  <!-- §06 DÓNDE SUELO ENCONTRAR DINERO -->
-  <section class="section donde" data-section="06" data-screen-label="06 Dónde suelo encontrar dinero">
-    <div class="section__tag"><span>§06</span><span>Dónde suelo encontrar dinero</span></div>
+  <!-- §05 DÓNDE SUELO ENCONTRAR DINERO -->
+  <section class="section donde" data-section="05" data-screen-label="05 Dónde suelo encontrar dinero">
+    <div class="section__tag"><span>§05</span><span>Dónde suelo encontrar dinero</span></div>
 
     <h2 class="section__title" data-reveal="">Dónde suelo<br>encontrar dinero</h2>
 
@@ -1489,55 +1465,10 @@ body.display-inter .stat__num {
     </div>
   </section>
 
-  <!-- §07 QUÉ INCLUYE -->
-  <section class="section incluye" data-section="07" data-screen-label="07 Qué incluye">
-    <div class="section__tag"><span>§07</span><span>Entregable</span></div>
+  <!-- §06 PARA QUIÉN -->
+  <section class="section parawho" data-section="06" data-screen-label="06 Para quién">
+    <div class="section__tag"><span>§06</span><span>Para quién</span></div>
 
-    <h2 class="section__title" data-reveal="">Qué incluye el diagnóstico</h2>
-
-    <ol class="incluye__list">
-      <li data-reveal="">
-        <span class="mono small dim">01</span>
-        <span>Dónde se va el dinero. Exactamente.</span>
-      </li>
-      <li data-reveal="">
-        <span class="mono small dim">02</span>
-        <span>Fricciones que están matando la conversión <span class="paren">(y nadie ve)</span></span>
-      </li>
-      <li data-reveal="">
-        <span class="mono small dim">03</span>
-        <span>Qué tres cosas, si las cambias esta semana, mueven la aguja.</span>
-      </li>
-      <li data-reveal="">
-        <span class="mono small dim">04</span>
-        <span>Decisiones que se toman <q>porque siempre se ha hecho así</q></span>
-      </li>
-      <li data-reveal="">
-        <span class="mono small dim">05</span>
-        <span>Una hoja de ruta clara que tu equipo puede ejecutar sin depender de mí.</span>
-      </li>
-    </ol>
-
-    <p class="incluye__kicker" data-reveal="">Lo que no mueve la aguja, <span class="accent">fuera</span>.</p>
-  </section>
-
-  <!-- §08 PARA QUIÉN -->
-  <section class="section parawho" data-section="08" data-screen-label="08 Para quién">
-    <div class="section__tag"><span>§08</span><span>Para quién</span></div>
-
-    <h2 class="section__title" data-reveal="">Para quién es</h2>
-
-    <p class="parawho__lede" data-reveal="">Este servicio es para negocios digitales que:</p>
-
-    <ul class="parawho__list">
-      <li data-reveal="">Facturan más de 2M/año. Tracción real. Equipo ejecutando.</li>
-      <li data-reveal="">Tienen equipos ejecutando pero les falta dirección</li>
-      <li data-reveal="">Han probado 15 cosas este trimestre y 12 no han movido nada</li>
-      <li data-reveal="">Necesitan a alguien que diga <q class="pull">esto no se toca — esto sí se toca</q></li>
-      <li data-reveal="">Trabajo con negocios que ya facturan y saben que algo no cuadra. No con proyectos que quieren validar idea.</li>
-    </ul>
-
-    <!-- Wow: Sí / No -->
     <div class="sino">
       <div class="sino__row sino__row--no" data-reveal="">
         <span class="sino__label">Si tu problema es hacer más,</span>
@@ -1548,34 +1479,22 @@ body.display-inter .stat__num {
         <span class="sino__verdict"><span class="sino__bar" data-bar=""></span>sí te ayudaré.</span>
       </div>
     </div>
-
-    <p class="parawho__outro" data-reveal="">No importa si vendes vuelos, suscripciones, créditos o zapatos.</p>
-    <p class="parawho__outro parawho__outro--big" data-reveal="">Si conviertes online, <em>sé dónde está el dinero</em>.</p>
   </section>
 
-  <!-- §09 INVERSIÓN -->
-  <section class="section inversion" data-section="09" data-screen-label="09 Inversión">
-    <div class="section__tag"><span>§09</span><span>Inversión mínima</span></div>
-
-    <div class="inversion__stack">
-      <p class="inversion__label mono" data-reveal="">Inversión mínima</p>
-      <div class="inversion__figure" data-reveal="">
-        <span class="inversion__num">10.000</span>
-        <span class="inversion__cur">€</span>
-      </div>
-      <div class="inversion__rules">
-        <p data-reveal=""><span class="dash">—</span> No es un pack.</p>
-        <p data-reveal=""><span class="dash">—</span> No es negociable.</p>
-        <p data-reveal=""><span class="dash">—</span> No todos los proyectos encajan.</p>
-        <p data-reveal=""><span class="dash">—</span> Si buscas una revisión rápida, no soy la opción.</p>
-        <p data-reveal=""><span class="dash">—</span> ¿No tienes claro si tu proyecto encaja? Hablamos 30 minutos. Si no veo encaje, te lo digo.</p>
-      </div>
+  <!-- §07 DIAGNÓSTICO PONT -->
+  <section class="section" data-section="07" data-screen-label="07 Diagnóstico">
+    <div class="section__tag"><span>Diagnóstico</span></div>
+    <div class="diag__pont" data-reveal="">
+      <p class="diag__pont-text">Desde 10.000€. Trabajo directo, sin intermediarios.</p>
+      <a href="/diagnostico.html" class="nav__cta" style="display:inline-flex; gap:8px;">
+        Ver cómo funciona <span aria-hidden="true">→</span>
+      </a>
     </div>
   </section>
 
-  <!-- §10 QUIÉN -->
-  <section class="section quien" data-section="10" data-screen-label="10 Quién">
-    <div class="section__tag"><span>§10</span><span>Quién está detrás</span></div>
+  <!-- §08 QUIÉN -->
+  <section class="section quien" data-section="08" data-screen-label="08 Quién">
+    <div class="section__tag"><span>§08</span><span>Quién está detrás</span></div>
 
     <h2 class="section__title" data-reveal="">Quién está detrás</h2>
 
@@ -1673,9 +1592,9 @@ body.display-inter .stat__num {
     </div>
   </section>
 
-  <!-- §11 REFFERABLE -->
-  <section class="section refferable" data-section="11" data-screen-label="11 Refferable">
-    <div class="section__tag"><span>§11</span><span>Refferable</span></div>
+  <!-- §09 REFFERABLE -->
+  <section class="section refferable" data-section="09" data-screen-label="09 Refferable">
+    <div class="section__tag"><span>§09</span><span>Refferable</span></div>
 
     <div class="refferable__inner">
       <div class="refferable__text" data-reveal="">
@@ -1691,9 +1610,9 @@ body.display-inter .stat__num {
     </div>
   </section>
 
-  <!-- §12 CTA -->
-  <section class="section cta" data-section="12" data-screen-label="12 CTA">
-    <div class="section__tag"><span>§12</span><span>Contacto</span></div>
+  <!-- §10 CTA -->
+  <section class="section cta" data-section="10" data-screen-label="10 CTA">
+    <div class="section__tag"><span>§10</span><span>Contacto</span></div>
 
     <div class="cta__frame">
       <p class="cta__small mono" data-reveal="">30 minutos.</p>
@@ -1905,6 +1824,14 @@ body.display-inter .stat__num {
   try {
     window.parent.postMessage({ type: '__edit_mode_available' }, '*');
   } catch (_) {}
+
+  // Active nav link
+  const currentPath = window.location.pathname;
+  document.querySelectorAll('.nav__link').forEach(link => {
+    if (link.getAttribute('href') === currentPath) {
+      link.classList.add('is-active');
+    }
+  });
 
 })();
 
