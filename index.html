@@ -457,7 +457,46 @@ main { padding-top: 0; position: relative; z-index: 2; }
   .verb:nth-child(n) { padding-left: 0; }
 }
 
-/* ============ §04 QUÉ INCLUYE ============ */
+/* ============ §04 CÓMO FUNCIONA ============ */
+.funciona__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: funciona;
+}
+.funciona__list li {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 24px;
+  padding: clamp(28px, 4vh, 48px) 0;
+  border-bottom: 1px solid var(--rule);
+}
+.funciona__list li:first-child {
+  border-top: 1px solid var(--rule);
+}
+.funciona__list li strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(20px, 2vw, 28px);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+.funciona__list li p {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  color: var(--dim);
+  line-height: 1.45;
+  max-width: 60ch;
+}
+
+@media (max-width: 720px) {
+  .funciona__list li { grid-template-columns: 36px 1fr; gap: 12px; }
+}
+
+/* ============ §05 QUÉ INCLUYE ============ */
 .incluye__list {
   list-style: none;
   margin: 0 0 clamp(60px, 10vh, 120px);
@@ -512,7 +551,7 @@ main { padding-top: 0; position: relative; z-index: 2; }
   .incluye__list li { grid-template-columns: 48px 1fr; gap: 14px; }
 }
 
-/* ============ §05 PARA QUIÉN ============ */
+/* ============ §06 PARA QUIÉN ============ */
 .parawho__lede {
   font-family: var(--font-display);
   font-weight: 300;
@@ -616,7 +655,7 @@ main { padding-top: 0; position: relative; z-index: 2; }
   .sino__row { grid-template-columns: 1fr; gap: 6px; }
 }
 
-/* ============ §06 INVERSIÓN ============ */
+/* ============ §07 INVERSIÓN ============ */
 .inversion {
   padding-top: clamp(100px, 18vh, 220px);
   padding-bottom: clamp(100px, 18vh, 220px);
@@ -677,7 +716,7 @@ main { padding-top: 0; position: relative; z-index: 2; }
   .inversion__label { writing-mode: horizontal-tb; transform: none; }
 }
 
-/* ============ §07 QUIÉN ============ */
+/* ============ §08 QUIÉN ============ */
 .quien__intro {
   font-family: var(--font-display);
   font-weight: 300;
@@ -895,7 +934,7 @@ main { padding-top: 0; position: relative; z-index: 2; }
   .promises { grid-template-columns: 1fr; }
 }
 
-/* ============ §08 CTA ============ */
+/* ============ §09 CTA ============ */
 .cta {
   padding-top: clamp(120px, 20vh, 220px);
   padding-bottom: clamp(80px, 12vh, 140px);
@@ -1159,9 +1198,54 @@ body.display-inter .stat__num {
     </div>
   </section>
 
-  <!-- §04 QUÉ INCLUYE -->
-  <section class="section incluye" data-section="04" data-screen-label="04 Qué incluye">
-    <div class="section__tag"><span>§04</span><span>Entregable</span></div>
+  <!-- §04 CÓMO FUNCIONA -->
+  <section class="section comofunciona" data-section="04" data-screen-label="04 Cómo funciona">
+    <div class="section__tag"><span>§04</span><span>Proceso</span></div>
+
+    <h2 class="section__title" data-reveal="">Cómo funciona</h2>
+
+    <ol class="funciona__list">
+      <li data-reveal="">
+        <span class="mono small dim">01</span>
+        <div>
+          <strong>Hablamos 30 minutos.</strong>
+          <p>Sin presentaciones. Sin decks. Cuéntame qué no cuadra. Si no veo encaje, te lo digo en la llamada.</p>
+        </div>
+      </li>
+      <li data-reveal="">
+        <span class="mono small dim">02</span>
+        <div>
+          <strong>Si encaja, miro de verdad.</strong>
+          <p>Datos, funnel, propuesta de valor, pricing, journeys, roadmap activo. No un cuestionario. Revisión real.</p>
+        </div>
+      </li>
+      <li data-reveal="">
+        <span class="mono small dim">03</span>
+        <div>
+          <strong>En menos de una semana identifico dónde se pierde dinero.</strong>
+          <p>No hipótesis. Patrones que he visto suficientes veces como para reconocerlos rápido.</p>
+        </div>
+      </li>
+      <li data-reveal="">
+        <span class="mono small dim">04</span>
+        <div>
+          <strong>Te entrego prioridades claras.</strong>
+          <p>Qué tocar primero. Qué ignorar. Por qué. Con números cuando los hay.</p>
+        </div>
+      </li>
+      <li data-reveal="">
+        <span class="mono small dim">05</span>
+        <div>
+          <strong>Tu equipo puede ejecutar sin depender de mí.</strong>
+          <p>No creo dependencia. Dejo criterio, foco y una hoja de ruta ejecutable.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- §05 QUÉ INCLUYE -->
+  <section class="section incluye" data-section="05" data-screen-label="05 Qué incluye">
+    <div class="section__tag"><span>§05</span><span>Entregable</span></div>
 
     <h2 class="section__title" data-reveal="">Qué incluye el diagnóstico</h2>
 
@@ -1191,9 +1275,9 @@ body.display-inter .stat__num {
     <p class="incluye__kicker" data-reveal="">Lo que no mueve la aguja, <span class="accent">fuera</span>.</p>
   </section>
 
-  <!-- §05 PARA QUIÉN -->
-  <section class="section parawho" data-section="05" data-screen-label="05 Para quién">
-    <div class="section__tag"><span>§05</span><span>Para quién</span></div>
+  <!-- §06 PARA QUIÉN -->
+  <section class="section parawho" data-section="06" data-screen-label="06 Para quién">
+    <div class="section__tag"><span>§06</span><span>Para quién</span></div>
 
     <h2 class="section__title" data-reveal="">Para quién es</h2>
 
@@ -1223,9 +1307,9 @@ body.display-inter .stat__num {
     <p class="parawho__outro parawho__outro--big" data-reveal="">Si conviertes online, <em>sé dónde está el dinero</em>.</p>
   </section>
 
-  <!-- §06 INVERSIÓN -->
-  <section class="section inversion" data-section="06" data-screen-label="06 Inversión">
-    <div class="section__tag"><span>§06</span><span>Inversión mínima</span></div>
+  <!-- §07 INVERSIÓN -->
+  <section class="section inversion" data-section="07" data-screen-label="07 Inversión">
+    <div class="section__tag"><span>§07</span><span>Inversión mínima</span></div>
 
     <div class="inversion__stack">
       <p class="inversion__label mono" data-reveal="">Inversión mínima</p>
@@ -1243,9 +1327,9 @@ body.display-inter .stat__num {
     </div>
   </section>
 
-  <!-- §07 QUIÉN -->
-  <section class="section quien" data-section="07" data-screen-label="07 Quién">
-    <div class="section__tag"><span>§07</span><span>Quién está detrás</span></div>
+  <!-- §08 QUIÉN -->
+  <section class="section quien" data-section="08" data-screen-label="08 Quién">
+    <div class="section__tag"><span>§08</span><span>Quién está detrás</span></div>
 
     <h2 class="section__title" data-reveal="">Quién está detrás</h2>
 
@@ -1343,9 +1427,9 @@ body.display-inter .stat__num {
     </div>
   </section>
 
-  <!-- §08 CTA -->
-  <section class="section cta" data-section="08" data-screen-label="08 CTA">
-    <div class="section__tag"><span>§08</span><span>Contacto</span></div>
+  <!-- §09 CTA -->
+  <section class="section cta" data-section="09" data-screen-label="09 CTA">
+    <div class="section__tag"><span>§09</span><span>Contacto</span></div>
 
     <div class="cta__frame">
       <p class="cta__small mono" data-reveal="">30 minutos.</p>
