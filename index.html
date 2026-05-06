@@ -496,7 +496,74 @@ main { padding-top: 0; position: relative; z-index: 2; }
   .funciona__list li { grid-template-columns: 36px 1fr; gap: 12px; }
 }
 
-/* ============ §05 QUÉ INCLUYE ============ */
+/* ============ §05 FORMAS DE TRABAJAR ============ */
+.formas__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  padding-top: 40px;
+  border-top: 1px solid var(--rule);
+}
+.formas__item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: clamp(40px, 6vh, 80px);
+  border-bottom: 1px solid var(--rule);
+}
+.formas__num {
+  margin: 0;
+}
+.formas__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(22px, 2.2vw, 32px);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0;
+  color: var(--ink);
+}
+.formas__desc {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.4;
+  margin: 0;
+}
+.formas__body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  color: var(--dim);
+  line-height: 1.45;
+  margin: 0;
+}
+.formas__note {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(16px, 1.2vw, 20px);
+  color: var(--dim);
+  margin: 0;
+}
+.formas__price {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  letter-spacing: .04em;
+  color: var(--accent);
+  font-weight: 600;
+  margin: 0;
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+@media (max-width: 960px) {
+  .formas__grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .formas__grid { grid-template-columns: 1fr; }
+}
+
+/* ============ §06 QUÉ INCLUYE ============ */
 .incluye__list {
   list-style: none;
   margin: 0 0 clamp(60px, 10vh, 120px);
@@ -551,7 +618,7 @@ main { padding-top: 0; position: relative; z-index: 2; }
   .incluye__list li { grid-template-columns: 48px 1fr; gap: 14px; }
 }
 
-/* ============ §06 PARA QUIÉN ============ */
+/* ============ §07 PARA QUIÉN ============ */
 .parawho__lede {
   font-family: var(--font-display);
   font-weight: 300;
@@ -655,7 +722,7 @@ main { padding-top: 0; position: relative; z-index: 2; }
   .sino__row { grid-template-columns: 1fr; gap: 6px; }
 }
 
-/* ============ §07 INVERSIÓN ============ */
+/* ============ §08 INVERSIÓN ============ */
 .inversion {
   padding-top: clamp(100px, 18vh, 220px);
   padding-bottom: clamp(100px, 18vh, 220px);
@@ -716,7 +783,7 @@ main { padding-top: 0; position: relative; z-index: 2; }
   .inversion__label { writing-mode: horizontal-tb; transform: none; }
 }
 
-/* ============ §08 QUIÉN ============ */
+/* ============ §09 QUIÉN ============ */
 .quien__intro {
   font-family: var(--font-display);
   font-weight: 300;
@@ -934,7 +1001,7 @@ main { padding-top: 0; position: relative; z-index: 2; }
   .promises { grid-template-columns: 1fr; }
 }
 
-/* ============ §09 CTA ============ */
+/* ============ §10 CTA ============ */
 .cta {
   padding-top: clamp(120px, 20vh, 220px);
   padding-bottom: clamp(80px, 12vh, 140px);
@@ -1243,9 +1310,45 @@ body.display-inter .stat__num {
     </ol>
   </section>
 
-  <!-- §05 QUÉ INCLUYE -->
-  <section class="section incluye" data-section="05" data-screen-label="05 Qué incluye">
-    <div class="section__tag"><span>§05</span><span>Entregable</span></div>
+  <!-- §05 FORMAS DE TRABAJAR -->
+  <section class="section formas" data-section="05" data-screen-label="05 Formas de trabajar">
+    <div class="section__tag"><span>§05</span><span>Formas de trabajar</span></div>
+
+    <h2 class="section__title" data-reveal="">Formas de trabajar</h2>
+
+    <div class="formas__grid">
+
+      <div class="formas__item" data-reveal="">
+        <p class="formas__num mono small dim">01</p>
+        <h3 class="formas__name">Diagnóstico estratégico</h3>
+        <p class="formas__desc">Para negocios que saben que algo falla pero no saben exactamente dónde.</p>
+        <p class="formas__body">En una o dos semanas miro el funnel, los datos disponibles, la propuesta de valor, el pricing, los journeys y lo que el equipo tiene en el roadmap. Al final tienes un documento que dice qué está costando dinero y qué mover primero.</p>
+        <p class="formas__note">No es un informe de 80 páginas. Es criterio ejecutable.</p>
+        <p class="formas__price">Desde 10.000€ — Trabajo directo, sin intermediarios.</p>
+      </div>
+
+      <div class="formas__item" data-reveal="">
+        <p class="formas__num mono small dim">02</p>
+        <h3 class="formas__name">Advisory mensual</h3>
+        <p class="formas__desc">Para CEOs, founders o directores de producto que necesitan criterio senior cerca sin contratar una agencia.</p>
+        <p class="formas__body">Revisamos decisiones, experimentos, roadmap y oportunidades. Sesiones quincenales. Soporte asíncrono entre medias. No soy un recurso que ejecuta. Soy el criterio que te ayuda a decidir mejor.</p>
+        <p class="formas__price">Desde 2.500€/mes.</p>
+      </div>
+
+      <div class="formas__item" data-reveal="">
+        <p class="formas__num mono small dim">03</p>
+        <h3 class="formas__name">Proyectos concretos</h3>
+        <p class="formas__desc">A veces el problema es específico: un funnel que no convierte, una suscripción con churn alto, una estrategia de pricing mal planteada, un equipo que ejecuta sin norte.</p>
+        <p class="formas__body">Entro para resolver ese problema. Sin contrato largo, sin estructura de agencia.</p>
+        <p class="formas__note">Hablamos y vemos si tiene sentido.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- §06 QUÉ INCLUYE -->
+  <section class="section incluye" data-section="06" data-screen-label="06 Qué incluye">
+    <div class="section__tag"><span>§06</span><span>Entregable</span></div>
 
     <h2 class="section__title" data-reveal="">Qué incluye el diagnóstico</h2>
 
@@ -1275,9 +1378,9 @@ body.display-inter .stat__num {
     <p class="incluye__kicker" data-reveal="">Lo que no mueve la aguja, <span class="accent">fuera</span>.</p>
   </section>
 
-  <!-- §06 PARA QUIÉN -->
-  <section class="section parawho" data-section="06" data-screen-label="06 Para quién">
-    <div class="section__tag"><span>§06</span><span>Para quién</span></div>
+  <!-- §07 PARA QUIÉN -->
+  <section class="section parawho" data-section="07" data-screen-label="07 Para quién">
+    <div class="section__tag"><span>§07</span><span>Para quién</span></div>
 
     <h2 class="section__title" data-reveal="">Para quién es</h2>
 
@@ -1307,9 +1410,9 @@ body.display-inter .stat__num {
     <p class="parawho__outro parawho__outro--big" data-reveal="">Si conviertes online, <em>sé dónde está el dinero</em>.</p>
   </section>
 
-  <!-- §07 INVERSIÓN -->
-  <section class="section inversion" data-section="07" data-screen-label="07 Inversión">
-    <div class="section__tag"><span>§07</span><span>Inversión mínima</span></div>
+  <!-- §08 INVERSIÓN -->
+  <section class="section inversion" data-section="08" data-screen-label="08 Inversión">
+    <div class="section__tag"><span>§08</span><span>Inversión mínima</span></div>
 
     <div class="inversion__stack">
       <p class="inversion__label mono" data-reveal="">Inversión mínima</p>
@@ -1327,9 +1430,9 @@ body.display-inter .stat__num {
     </div>
   </section>
 
-  <!-- §08 QUIÉN -->
-  <section class="section quien" data-section="08" data-screen-label="08 Quién">
-    <div class="section__tag"><span>§08</span><span>Quién está detrás</span></div>
+  <!-- §09 QUIÉN -->
+  <section class="section quien" data-section="09" data-screen-label="09 Quién">
+    <div class="section__tag"><span>§09</span><span>Quién está detrás</span></div>
 
     <h2 class="section__title" data-reveal="">Quién está detrás</h2>
 
@@ -1427,9 +1530,9 @@ body.display-inter .stat__num {
     </div>
   </section>
 
-  <!-- §09 CTA -->
-  <section class="section cta" data-section="09" data-screen-label="09 CTA">
-    <div class="section__tag"><span>§09</span><span>Contacto</span></div>
+  <!-- §10 CTA -->
+  <section class="section cta" data-section="10" data-screen-label="10 CTA">
+    <div class="section__tag"><span>§10</span><span>Contacto</span></div>
 
     <div class="cta__frame">
       <p class="cta__small mono" data-reveal="">30 minutos.</p>
