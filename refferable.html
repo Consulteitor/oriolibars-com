@@ -74,10 +74,12 @@ button { font: inherit; cursor: pointer; background: none; border: none; color: 
 .nav__link.is-active { color: var(--ink); font-weight: 600; }
 .nav__cta { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border: 1px solid var(--ink); border-radius: 999px; transition: background .25s var(--ease), color .25s var(--ease); }
 .nav__cta:hover { background: var(--ink); color: var(--paper); }
+@media (max-width: 960px) {
+  .nav__status { display: none; }
+}
 @media (max-width: 720px) {
   .nav { grid-template-columns: 1fr auto; gap: 12px; padding: 14px 20px; }
   .nav__links { display: none; }
-  .nav__status { display: none; }
   .nav__cta { display: none; }
   .nav__burger { display: flex; }
 }

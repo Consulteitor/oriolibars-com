@@ -168,10 +168,12 @@ button { font: inherit; cursor: pointer; background: none; border: none; color: 
 }
 .nav__cta:hover { background: var(--ink); color: var(--paper); }
 
+@media (max-width: 960px) {
+  .nav__status { display: none; }
+}
 @media (max-width: 720px) {
   .nav { grid-template-columns: 1fr auto; gap: 12px; padding: 14px 20px; }
   .nav__links { display: none; }
-  .nav__status { display: none; }
   .nav__cta { display: none; }
   .nav__burger { display: flex; }
 }
@@ -191,7 +193,7 @@ main { padding-top: 0; position: relative; z-index: 2; }
 
 .section__tag {
   position: absolute;
-  top: clamp(28px, 6vh, 60px);
+  top: clamp(72px, 9vh, 100px);
   left: var(--pad-x);
   right: var(--pad-x);
   display: flex; justify-content: space-between;
