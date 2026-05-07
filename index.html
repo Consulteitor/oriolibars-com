@@ -171,6 +171,9 @@ button { font: inherit; cursor: pointer; background: none; border: none; color: 
 @media (max-width: 720px) {
   .nav { grid-template-columns: 1fr auto; gap: 12px; padding: 14px 20px; }
   .nav__links { display: none; }
+  .nav__status { display: none; }
+  .nav__cta { display: none; }
+  .nav__burger { display: flex; }
 }
 
 /* ============ LAYOUT / SECTIONS ============ */
@@ -1285,6 +1288,61 @@ body.display-inter .stat__num {
   font-variation-settings: normal;
 }
 
+/* ============ STATUS LED ============ */
+.nav__status {
+  display: flex; align-items: center; gap: 7px;
+  font-family: var(--font-mono); font-size: var(--fs-small); letter-spacing: .06em;
+  text-transform: uppercase; color: var(--dim);
+}
+.nav__led {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent);
+  animation: breathe 2.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes breathe {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .3; transform: scale(.65); }
+}
+
+/* ============ HAMBURGER ============ */
+.nav__burger {
+  display: none;
+  flex-direction: column; justify-content: center; gap: 5px;
+  width: 36px; height: 36px; padding: 6px;
+  cursor: pointer; background: none; border: none; color: inherit;
+}
+.nav__burger span {
+  display: block; height: 1.5px; background: var(--ink);
+  transition: transform .3s var(--ease), opacity .2s;
+}
+.nav--open .nav__burger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav--open .nav__burger span:nth-child(2) { opacity: 0; }
+.nav--open .nav__burger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ============ MOBILE DRAWER ============ */
+.nav__drawer {
+  display: none; position: fixed; inset: 0; z-index: 149;
+  background: var(--paper); flex-direction: column;
+  align-items: center; justify-content: center; gap: 36px;
+  padding: 80px 40px 60px;
+}
+.nav--open .nav__drawer { display: flex; }
+.nav__drawer-link {
+  font-family: var(--font-display); font-style: italic; font-weight: 400;
+  font-size: clamp(32px, 10vw, 56px); letter-spacing: -0.03em;
+  color: var(--ink); text-decoration: none; transition: color .2s;
+}
+.nav__drawer-link:hover, .nav__drawer-link.is-active { color: var(--accent); }
+.nav__drawer-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 26px; border: 1px solid var(--ink);
+  font-family: var(--font-mono); font-size: var(--fs-small);
+  letter-spacing: .06em; text-transform: uppercase;
+  transition: background .25s, color .25s;
+}
+.nav__drawer-cta:hover { background: var(--ink); color: var(--paper); }
+
 /* ============ WIDE SCREENS (1600px+) ============ */
 @media (min-width: 1600px) {
   :root {
@@ -1307,7 +1365,20 @@ body.display-inter .stat__num {
     <a href="/refferable.html" class="nav__link">Refferable</a>
     <a href="/contacto.html" class="nav__link">Contacto</a>
   </div>
-  <a href="/contacto.html" class="nav__cta">Hablamos <span aria-hidden="true">→</span></a>
+  <div style="display:flex;align-items:center;gap:20px;">
+    <span class="nav__status"><span class="nav__led" aria-hidden="true"></span>Disponible</span>
+    <a href="/contacto.html" class="nav__cta">Hablamos <span aria-hidden="true">→</span></a>
+    <button class="nav__burger" id="nav-burger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav__drawer" id="nav-drawer" aria-hidden="true">
+    <a href="/diagnostico.html" class="nav__drawer-link">Diagnóstico</a>
+    <a href="/refferable.html" class="nav__drawer-link">Refferable</a>
+    <a href="/contacto.html" class="nav__drawer-link">Contacto</a>
+    <a href="/contacto.html" class="nav__drawer-cta">Hablamos →</a>
+    <span class="nav__status" style="margin-top:8px;"><span class="nav__led" aria-hidden="true"></span>Disponible</span>
+  </div>
 </nav>
 
 <main>
@@ -1825,9 +1896,30 @@ body.display-inter .stat__num {
     window.parent.postMessage({ type: '__edit_mode_available' }, '*');
   } catch (_) {}
 
+  // Hamburger / drawer
+  const burger = document.getElementById('nav-burger');
+  const drawer = document.getElementById('nav-drawer');
+  const navEl = document.querySelector('.nav');
+  if (burger && drawer && navEl) {
+    burger.addEventListener('click', () => {
+      const open = navEl.classList.toggle('nav--open');
+      burger.setAttribute('aria-expanded', String(open));
+      drawer.setAttribute('aria-hidden', String(!open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    drawer.querySelectorAll('a').forEach(el => {
+      el.addEventListener('click', () => {
+        navEl.classList.remove('nav--open');
+        burger.setAttribute('aria-expanded', 'false');
+        drawer.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
   // Active nav link
   const currentPath = window.location.pathname;
-  document.querySelectorAll('.nav__link').forEach(link => {
+  document.querySelectorAll('.nav__link, .nav__drawer-link').forEach(link => {
     if (link.getAttribute('href') === currentPath) {
       link.classList.add('is-active');
     }
