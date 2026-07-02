@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter+Tight:ital,wght@0,300..900;1,300..900&family=JetBrains+Mono:wght@300..700&display=swap">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio — Oriol Ibars</title>
+<meta name="description" content="Portfolio privado.">
+<meta name="robots" content="noindex, nofollow, noarchive">
+
+<style>
+/* =========================================================
+   Oriol Ibars — portfolio
+   ========================================================= */
+
+:root {
+  --paper: #F2EEE6;
+  --ink:   #0E0D0B;
+  --ink-2: #1A1815;
+  --dim:   #8A8477;
+  --rule:  rgba(14,13,11,.16);
+  --rule-strong: rgba(14,13,11,.5);
+  --accent: #FF5B14;
+
+  --font-display: 'Fraunces', 'Times New Roman', serif;
+  --font-sans: 'Inter Tight', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --maxw: 1440px;
+  --pad-x: clamp(20px, 4vw, 64px);
+
+  --fs-hero:    clamp(56px, 14vw, 220px);
+  --fs-lg:      clamp(30px, 5vw, 72px);
+  --fs-md:      clamp(22px, 2.6vw, 40px);
+  --fs-body:    clamp(17px, 1.25vw, 21px);
+  --fs-small:   clamp(12px, 0.9vw, 13px);
+
+  --ease: cubic-bezier(.2,.7,.15,1);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: 1.35;
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
+  font-feature-settings: "ss01","ss02","cv11","calt";
+}
+
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: .35;
+  mix-blend-mode: multiply;
+  background-image:
+    radial-gradient(rgba(14,13,11,.035) 1px, transparent 1px),
+    radial-gradient(rgba(14,13,11,.025) 1px, transparent 1px);
+  background-size: 3px 3px, 7px 7px;
+  background-position: 0 0, 1px 2px;
+}
+
+::selection { background: var(--accent); color: #fff; }
+
+a { color: inherit; text-decoration: none; }
+p { margin: 0; }
+em { font-style: italic; }
+strong { font-weight: 600; }
+button { font: inherit; cursor: pointer; background: none; border: none; color: inherit; }
+img { display: block; width: 100%; height: auto; }
+
+/* ============ NAV ============ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 18px var(--pad-x);
+  background: color-mix(in oklab, var(--paper) 86%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  letter-spacing: .02em;
+}
+.nav__brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+  font-style: italic;
+}
+.nav__links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(24px, 3vw, 48px);
+}
+.nav__link {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  letter-spacing: .04em;
+  color: var(--dim);
+  text-decoration: none;
+  transition: color .2s;
+}
+.nav__link:hover { color: var(--ink); }
+.nav__link.is-active { color: var(--ink); font-weight: 600; }
+.nav__cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  transition: background .25s var(--ease), color .25s var(--ease);
+}
+.nav__cta:hover { background: var(--ink); color: var(--paper); }
+
+.nav__status {
+  display: flex; align-items: center; gap: 7px;
+  font-family: var(--font-mono); font-size: var(--fs-small); letter-spacing: .06em;
+  text-transform: uppercase; color: var(--dim);
+}
+.nav__led {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent);
+  animation: breathe 2.4s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes breathe {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .3; transform: scale(.65); }
+}
+
+.nav__burger {
+  display: none;
+  flex-direction: column; justify-content: center; gap: 5px;
+  width: 36px; height: 36px; padding: 6px;
+  cursor: pointer; background: none; border: none; color: inherit;
+}
+.nav__burger span {
+  display: block; height: 1.5px; background: var(--ink);
+  transition: transform .3s var(--ease), opacity .2s;
+}
+.nav--open .nav__burger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav--open .nav__burger span:nth-child(2) { opacity: 0; }
+.nav--open .nav__burger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+.nav__drawer {
+  display: none; position: fixed; inset: 0; z-index: 149;
+  background: var(--paper); flex-direction: column;
+  align-items: center; justify-content: center; gap: 36px;
+  padding: 80px 40px 60px;
+}
+.nav--open .nav__drawer { display: flex; }
+.nav__drawer-link {
+  font-family: var(--font-display); font-style: italic; font-weight: 400;
+  font-size: clamp(32px, 10vw, 56px); letter-spacing: -0.03em;
+  color: var(--ink); text-decoration: none; transition: color .2s;
+}
+.nav__drawer-link:hover, .nav__drawer-link.is-active { color: var(--accent); }
+.nav__drawer-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 26px; border: 1px solid var(--ink);
+  font-family: var(--font-mono); font-size: var(--fs-small);
+  letter-spacing: .06em; text-transform: uppercase;
+  transition: background .25s, color .25s;
+}
+.nav__drawer-cta:hover { background: var(--ink); color: var(--paper); }
+
+@media (max-width: 960px) {
+  .nav__status { display: none; }
+}
+@media (max-width: 720px) {
+  .nav { grid-template-columns: 1fr auto; gap: 12px; padding: 14px 20px; }
+  .nav__links { display: none; }
+  .nav__cta { display: none; }
+  .nav__burger { display: flex; }
+}
+
+/* ============ LAYOUT / SECTIONS ============ */
+main { padding-top: 0; position: relative; z-index: 2; }
+
+.section {
+  position: relative;
+  padding: clamp(100px, 12vh, 180px) var(--pad-x);
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+.section + .section {
+  border-top: 1px solid var(--rule);
+}
+
+.section__tag {
+  position: absolute;
+  top: clamp(72px, 9vh, 100px);
+  left: var(--pad-x);
+  right: var(--pad-x);
+  display: flex; justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--dim);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.section__tag span:first-child {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.section__title {
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-style: italic;
+  font-size: var(--fs-lg);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin: 0 0 clamp(40px, 6vh, 88px);
+  color: var(--ink);
+}
+
+.mono { font-family: var(--font-mono); letter-spacing: .01em; }
+.small { font-size: var(--fs-small); }
+.dim { color: var(--dim); }
+.accent { color: var(--accent); }
+
+/* ============ REVEAL ============ */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .9s var(--ease), transform 1s var(--ease);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============ §01 HERO ============ */
+.hero {
+  min-height: 72vh;
+  padding-top: clamp(140px, 22vh, 240px);
+  padding-bottom: clamp(60px, 10vh, 120px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.hero__headline {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(48px, 10vw, 160px);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  margin: 0;
+  font-variation-settings: "SOFT" 30, "opsz" 144;
+}
+.hero__headline .line { display: block; }
+.hero__headline .line--italic {
+  font-style: italic;
+  font-weight: 400;
+  font-variation-settings: "SOFT" 80, "opsz" 144;
+}
+.hero__sub {
+  margin-top: clamp(28px, 5vh, 56px);
+  max-width: 560px;
+  color: var(--dim);
+}
+.hero__sub .pop { color: var(--ink); }
+
+/* ============ CARDS ============ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(32px, 4vw, 64px) clamp(24px, 3vw, 48px);
+}
+@media (max-width: 880px) {
+  .grid { grid-template-columns: 1fr; }
+}
+.grid--feature { grid-template-columns: 1fr; }
+.grid + .grid { margin-top: clamp(32px, 4vw, 64px); }
+
+.card { min-width: 0; }
+
+.card__shot {
+  display: block;
+  border: 1px solid var(--rule-strong);
+  background: #fff;
+  transition: transform .45s var(--ease), box-shadow .45s var(--ease);
+}
+.card__shot:hover {
+  transform: translateY(-4px);
+  box-shadow: 8px 8px 0 var(--accent);
+}
+.card__bar {
+  display: flex; align-items: center; gap: 12px;
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--dim);
+}
+.card__dots { letter-spacing: 3px; font-size: 8px; color: var(--rule-strong); }
+.card__url { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.card__shot:hover .card__url { color: var(--accent); }
+
+.card__img { aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+
+.card__head {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+  margin-top: 18px;
+}
+.card__title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: var(--fs-md);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  margin: 0;
+}
+.card__meta {
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--dim);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.card__desc {
+  margin-top: 10px;
+  max-width: 60ch;
+  color: var(--ink-2);
+}
+.card__desc .dim { color: var(--dim); }
+
+/* feature card (Dogfy) */
+.card--feature .card__img { aspect-ratio: auto; }
+.card--feature .card__title { font-size: var(--fs-lg); }
+
+/* ============ CTA ============ */
+.cta {
+  text-align: left;
+}
+.cta__line {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(40px, 7vw, 110px);
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+  margin: 0;
+}
+.cta__line--accent { color: var(--accent); font-style: italic; font-weight: 400; }
+.cta__btn {
+  display: inline-flex; align-items: center; gap: 14px;
+  margin-top: clamp(28px, 5vh, 48px);
+  padding: 18px 32px;
+  border: 1px solid var(--ink);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  transition: background .25s var(--ease), color .25s var(--ease);
+}
+.cta__btn:hover { background: var(--ink); color: var(--paper); }
+
+/* ============ GATE ============ */
+body.locked main, body.locked .nav { visibility: hidden; }
+body:not(.locked) .gate { display: none; }
+
+.gate {
+  position: fixed; inset: 0; z-index: 200;
+  background: var(--paper);
+  display: flex; align-items: center; justify-content: center;
+  padding: var(--pad-x);
+}
+.gate::before {
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  opacity: .35;
+  mix-blend-mode: multiply;
+  background-image:
+    radial-gradient(rgba(14,13,11,.035) 1px, transparent 1px),
+    radial-gradient(rgba(14,13,11,.025) 1px, transparent 1px);
+  background-size: 3px 3px, 7px 7px;
+  background-position: 0 0, 1px 2px;
+}
+.gate.is-open {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .6s var(--ease), visibility 0s .6s;
+}
+.gate__inner {
+  width: min(560px, 100%);
+  position: relative;
+}
+.gate__tag {
+  display: flex; justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--dim);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 14px;
+  margin-bottom: clamp(28px, 5vh, 48px);
+}
+.gate__tag span:first-child { color: var(--ink); font-weight: 500; }
+.gate__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(44px, 8vw, 88px);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  margin: 0;
+  font-variation-settings: "SOFT" 30, "opsz" 144;
+}
+.gate__title em {
+  display: block;
+  font-style: italic;
+  font-weight: 400;
+  font-variation-settings: "SOFT" 80, "opsz" 144;
+}
+.gate__sub {
+  margin-top: 18px;
+  color: var(--dim);
+  max-width: 42ch;
+}
+.gate__form {
+  margin-top: clamp(32px, 6vh, 56px);
+  display: flex;
+  border: 1px solid var(--ink);
+  background: color-mix(in oklab, #fff 55%, var(--paper));
+  transition: box-shadow .3s var(--ease), transform .3s var(--ease);
+}
+.gate__form:focus-within {
+  box-shadow: 6px 6px 0 var(--accent);
+  transform: translate(-2px, -2px);
+}
+.gate__input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 18px 20px;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: .04em;
+  color: var(--ink);
+}
+.gate__input::placeholder { color: var(--dim); }
+.gate__btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 18px 26px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background .25s var(--ease), color .25s var(--ease);
+}
+.gate__btn:hover { background: var(--accent); color: #fff; }
+.gate__btn .arrow { transition: transform .25s var(--ease); }
+.gate__btn:hover .arrow { transform: translateX(4px); }
+.gate__error {
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  letter-spacing: .04em;
+  color: var(--accent);
+  min-height: 1.4em;
+  opacity: 0;
+  transition: opacity .25s;
+}
+.gate.has-error .gate__error { opacity: 1; }
+.gate.has-error .gate__form {
+  border-color: var(--accent);
+  animation: gate-shake .4s var(--ease);
+}
+@keyframes gate-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-7px); }
+  50% { transform: translateX(6px); }
+  75% { transform: translateX(-3px); }
+}
+.gate__foot {
+  margin-top: clamp(36px, 7vh, 64px);
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--dim);
+  letter-spacing: .04em;
+}
+.gate__foot a { border-bottom: 1px solid var(--rule-strong); transition: color .2s, border-color .2s; }
+.gate__foot a:hover { color: var(--accent); border-color: var(--accent); }
+@media (max-width: 560px) {
+  .gate__form { flex-direction: column; }
+  .gate__btn { justify-content: center; }
+}
+
+/* ============ FOOTER ============ */
+.foot {
+  border-top: 1px solid var(--rule);
+  padding: 32px var(--pad-x) 44px;
+  max-width: var(--maxw);
+  margin: 0 auto;
+}
+.foot__row {
+  display: flex; flex-wrap: wrap; gap: 12px 32px;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: var(--fs-small);
+  color: var(--ink);
+}
+</style>
+</head>
+<body class="locked">
+
+<!-- Gate -->
+<div class="gate" id="gate">
+  <div class="gate__inner">
+    <div class="gate__tag"><span>§00</span><span>Acceso</span></div>
+    <h1 class="gate__title">Portfolio <em>privado.</em></h1>
+    <p class="gate__sub">Si has llegado hasta aquí, alguien te ha dado una contraseña. Este es el momento de usarla.</p>
+    <form class="gate__form" id="gate-form" autocomplete="off">
+      <input class="gate__input" id="gate-input" type="password" placeholder="Contraseña" aria-label="Contraseña" autofocus>
+      <button class="gate__btn" type="submit">Entrar <span class="arrow" aria-hidden="true">→</span></button>
+    </form>
+    <p class="gate__error" id="gate-error" role="alert">No es esa. Prueba otra vez.</p>
+    <p class="gate__foot">¿Sin contraseña? <a href="/contacto.html">Pídemela</a> · <a href="/">oriolibars.com</a></p>
+  </div>
+</div>
+
+<!-- Nav -->
+<nav class="nav" aria-label="Principal">
+  <a href="/" class="nav__brand"><span>Oriol Ibars</span></a>
+  <div class="nav__links">
+    <a href="/diagnostico.html" class="nav__link">Diagnóstico</a>
+    <a href="/portfolio/" class="nav__link is-active">Portfolio</a>
+    <a href="/refferable.html" class="nav__link">Refferable</a>
+    <a href="/contacto.html" class="nav__link">Contacto</a>
+  </div>
+  <div style="display:flex;align-items:center;gap:20px;">
+    <span class="nav__status"><span class="nav__led" aria-hidden="true"></span>Disponible</span>
+    <a href="/contacto.html" class="nav__cta">Hablamos <span aria-hidden="true">→</span></a>
+    <button class="nav__burger" id="nav-burger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav__drawer" id="nav-drawer" aria-hidden="true">
+    <a href="/diagnostico.html" class="nav__drawer-link">Diagnóstico</a>
+    <a href="/portfolio/" class="nav__drawer-link is-active">Portfolio</a>
+    <a href="/refferable.html" class="nav__drawer-link">Refferable</a>
+    <a href="/contacto.html" class="nav__drawer-link">Contacto</a>
+    <a href="/contacto.html" class="nav__drawer-cta">Hablamos →</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- §01 HERO -->
+  <section class="hero section" id="inicio">
+    <div class="section__tag"><span>§01</span><span>Portfolio</span></div>
+
+    <h1 class="hero__headline">
+      <span class="line" data-reveal>Trabajo.</span>
+      <span class="line line--italic" data-reveal>Y experimentos.</span>
+    </h1>
+
+    <div class="hero__sub">
+      <p data-reveal>Pantallazo, URL y dos líneas de cada uno.</p>
+      <p class="pop" data-reveal>Sin casos de estudio de cuarenta páginas.</p>
+    </div>
+  </section>
+
+  <!-- §02 TRABAJO -->
+  <section class="section" id="trabajo">
+    <div class="section__tag"><span>§02</span><span>Trabajo</span></div>
+
+    <h2 class="section__title" data-reveal>Con clientes</h2>
+
+    <div class="grid grid--feature">
+      <article class="card card--feature" data-reveal>
+        <a class="card__shot" href="https://www.dogfydiet.com" target="_blank" rel="noopener">
+          <span class="card__bar"><span class="card__dots">●●●</span><span class="card__url">dogfydiet.com</span></span>
+          <img class="card__img" src="img/dogfydiet.jpg" alt="Home de Dogfy Diet" loading="eager">
+        </a>
+        <div class="card__head">
+          <h3 class="card__title">Dogfy Diet</h3>
+          <span class="card__meta">Ahora · Suscripción D2C</span>
+        </div>
+        <p class="card__desc">Comida natural para perros, a domicilio. Trabajo en el funnel de captación: del primer clic al primer pedido, y que el segundo llegue solo.</p>
+      </article>
+    </div>
+
+    <div class="grid">
+      <article class="card" data-reveal>
+        <a class="card__shot" href="https://bookish.org" target="_blank" rel="noopener">
+          <span class="card__bar"><span class="card__dots">●●●</span><span class="card__url">bookish.org</span></span>
+          <img class="card__img" src="img/bookish.jpg" alt="Home de Bookish" loading="lazy">
+        </a>
+        <div class="card__head">
+          <h3 class="card__title">Bookish</h3>
+          <span class="card__meta">Ecommerce editorial</span>
+        </div>
+        <p class="card__desc">Marketplace de librerías independientes: más de cincuenta librerías reales vendiendo online bajo una sola marca.</p>
+      </article>
+
+      <article class="card" data-reveal>
+        <a class="card__shot" href="https://www.vueling.com/es" target="_blank" rel="noopener">
+          <span class="card__bar"><span class="card__dots">●●●</span><span class="card__url">vueling.com</span></span>
+          <img class="card__img" src="img/vueling.jpg" alt="Home de Vueling" loading="lazy">
+        </a>
+        <div class="card__head">
+          <h3 class="card__title">Vueling</h3>
+          <span class="card__meta">Travel</span>
+        </div>
+        <p class="card__desc">El funnel de reserva de una aerolínea: millones de visitas, margen fino y cada décima de conversión cuenta.</p>
+      </article>
+
+      <article class="card" data-reveal>
+        <a class="card__shot" href="https://www.bancsabadell.com" target="_blank" rel="noopener">
+          <span class="card__bar"><span class="card__dots">●●●</span><span class="card__url">bancsabadell.com</span></span>
+          <img class="card__img" src="img/bancsabadell.jpg" alt="Home de Banco Sabadell" loading="lazy">
+        </a>
+        <div class="card__head">
+          <h3 class="card__title">Banco Sabadell</h3>
+          <span class="card__meta">Banca</span>
+        </div>
+        <p class="card__desc">Captación y contratación digital para particulares, en un sector donde cada formulario pasa por tres comités.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- §03 EXPERIMENTOS -->
+  <section class="section" id="experimentos">
+    <div class="section__tag"><span>§03</span><span>Experimentos</span></div>
+
+    <h2 class="section__title" data-reveal>Por mi cuenta</h2>
+
+    <div class="grid">
+      <article class="card" data-reveal>
+        <a class="card__shot" href="https://topcerdanya.com" target="_blank" rel="noopener">
+          <span class="card__bar"><span class="card__dots">●●●</span><span class="card__url">topcerdanya.com</span></span>
+          <img class="card__img" src="img/topcerdanya.jpg" alt="Home de TopCerdanya" loading="lazy">
+        </a>
+        <div class="card__head">
+          <h3 class="card__title">Top.Cerdanya</h3>
+          <span class="card__meta">Medio local</span>
+        </div>
+        <p class="card__desc">La guía independiente de la Cerdanya. Guías, agenda, noticias y herramientas propias: estado de carreteras en directo, mapa pet friendly, hasta un simulador del eclipse de 2026.</p>
+      </article>
+
+      <article class="card" data-reveal>
+        <a class="card__shot" href="https://elboldemiperro.vercel.app" target="_blank" rel="noopener">
+          <span class="card__bar"><span class="card__dots">●●●</span><span class="card__url">elboldemiperro.vercel.app</span></span>
+          <img class="card__img" src="img/elboldemiperro.jpg" alt="Home de El bol de mi perro" loading="lazy">
+        </a>
+        <div class="card__head">
+          <h3 class="card__title">El bol de mi perro</h3>
+          <span class="card__meta">Lead gen</span>
+        </div>
+        <p class="card__desc">Calculadora de nutrición canina. Le cuentas cómo es tu perro y te dice qué darle, cuánto al día y dónde comprarlo al mejor precio.</p>
+      </article>
+
+      <article class="card" data-reveal>
+        <a class="card__shot" href="https://cerdanya-concierge.vercel.app" target="_blank" rel="noopener">
+          <span class="card__bar"><span class="card__dots">●●●</span><span class="card__url">cerdanya-concierge.vercel.app</span></span>
+          <img class="card__img" src="img/conciergecerdanya.jpg" alt="Home de Cerdanya Concierge" loading="lazy">
+        </a>
+        <div class="card__head">
+          <h3 class="card__title">Cerdanya Concierge</h3>
+          <span class="card__meta">Servicio privado</span>
+        </div>
+        <p class="card__desc">Tu casa en La Cerdanya, cuidada como si vivieras en ella. Veinticinco plazas, selección individual y sin permanencia.</p>
+      </article>
+
+      <article class="card" data-reveal>
+        <a class="card__shot" href="https://elroast.com" target="_blank" rel="noopener">
+          <span class="card__bar"><span class="card__dots">●●●</span><span class="card__url">elroast.com</span></span>
+          <img class="card__img" src="img/elroast.jpg" alt="Home de El Roast" loading="lazy">
+        </a>
+        <div class="card__head">
+          <h3 class="card__title">El Roast</h3>
+          <span class="card__meta">IA · CRO</span>
+        </div>
+        <p class="card__desc">Pegas la URL de tu web y una IA entrenada con 25 años de CRO le pone nota, sin anestesia. Gratis, en 60 segundos y sin pedirte el email.</p>
+      </article>
+
+      <article class="card" data-reveal>
+        <span class="card__shot" style="cursor: default;">
+          <span class="card__bar"><span class="card__dots">●●●</span><span class="card__url">crm.oriolibars.com <span class="dim">· privado</span></span></span>
+          <img class="card__img" src="img/crm.jpg" alt="Pantalla de acceso del CRM outreach" loading="lazy">
+        </span>
+        <div class="card__head">
+          <h3 class="card__title">CRM outreach</h3>
+          <span class="card__meta">Herramienta interna</span>
+        </div>
+        <p class="card__desc">CRM propio para outreach multicuenta: campañas, seguimientos y detección de respuestas, sin pagar un SaaS. Next.js y Supabase, de puertas adentro.</p>
+      </article>
+
+      <article class="card" data-reveal>
+        <a class="card__shot" href="/">
+          <span class="card__bar"><span class="card__dots">●●●</span><span class="card__url">oriolibars.com</span></span>
+          <img class="card__img" src="img/oriolibars.jpg" alt="Home de oriolibars.com" loading="lazy">
+        </a>
+        <div class="card__head">
+          <h3 class="card__title">Esta casa</h3>
+          <span class="card__meta">One-pager</span>
+        </div>
+        <p class="card__desc">Un one-pager tipográfico en HTML plano. Sin frameworks, sin cookies, sin nada que se pueda romper un domingo por la noche.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- §04 CTA -->
+  <section class="section cta" id="contacto">
+    <div class="section__tag"><span>§04</span><span>Contacto</span></div>
+
+    <p class="cta__line" data-reveal>¿Algo que</p>
+    <p class="cta__line cta__line--accent" data-reveal>no cuadra?</p>
+
+    <a class="cta__btn" href="https://calendly.com/oriolibars/30min" target="_blank" rel="noopener" data-reveal>
+      <span>Hablamos 30 minutos</span>
+      <span aria-hidden="true">→</span>
+    </a>
+  </section>
+
+  <footer class="foot">
+    <div class="foot__row">
+      <span>© 2026 Oriol Ibars</span>
+      <span class="dim">25 años. 250 proyectos. Mirando lo que nadie quiere mirar.</span>
+      <span class="mono small dim">v.2026.07</span>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+(function() {
+  'use strict';
+
+  /* ===== Gate ===== */
+  const GATE_HASH = 'b0cfd20e3047a8b58770b21be976e832a32ec08a2297296c35d949df47ff6c5d';
+  const gate = document.getElementById('gate');
+  const gateForm = document.getElementById('gate-form');
+  const gateInput = document.getElementById('gate-input');
+
+  async function sha256(text) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+
+  function unlock(instant) {
+    document.body.classList.remove('locked');
+    if (instant) {
+      gate.remove();
+    } else {
+      gate.classList.add('is-open');
+      setTimeout(() => gate.remove(), 700);
+    }
+    window.dispatchEvent(new Event('portfolio:unlocked'));
+  }
+
+  try {
+    if (sessionStorage.getItem('pf_auth') === GATE_HASH) unlock(true);
+  } catch (_) {}
+
+  if (gateForm) {
+    gateForm.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      gate.classList.remove('has-error');
+      const hash = await sha256(gateInput.value.trim());
+      if (hash === GATE_HASH) {
+        try { sessionStorage.setItem('pf_auth', hash); } catch (_) {}
+        unlock(false);
+      } else {
+        // retrigger the shake animation
+        void gate.offsetWidth;
+        gate.classList.add('has-error');
+        gateInput.select();
+      }
+    });
+  }
+
+  /* ===== Reveal on scroll ===== */
+  const revealEls = document.querySelectorAll('[data-reveal]');
+  revealEls.forEach((el) => {
+    const parent = el.parentElement;
+    if (!parent) return;
+    const siblings = Array.from(parent.querySelectorAll(':scope > [data-reveal]'));
+    const idx = siblings.indexOf(el);
+    if (idx > 0) el.style.setProperty('--reveal-delay', (idx * 90) + 'ms');
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+  function startReveals() {
+    revealEls.forEach((el) => io.observe(el));
+  }
+  if (document.body.classList.contains('locked')) {
+    window.addEventListener('portfolio:unlocked', startReveals, { once: true });
+  } else {
+    startReveals();
+  }
+
+  /* ===== Hamburger / drawer ===== */
+  const burger = document.getElementById('nav-burger');
+  const drawer = document.getElementById('nav-drawer');
+  const navEl = document.querySelector('.nav');
+  if (burger && drawer && navEl) {
+    burger.addEventListener('click', () => {
+      const open = navEl.classList.toggle('nav--open');
+      burger.setAttribute('aria-expanded', String(open));
+      drawer.setAttribute('aria-hidden', String(!open));
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    drawer.querySelectorAll('a').forEach(el => {
+      el.addEventListener('click', () => {
+        navEl.classList.remove('nav--open');
+        burger.setAttribute('aria-expanded', 'false');
+        drawer.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+})();
+</script>
+</body>
+</html>
