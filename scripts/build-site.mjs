@@ -177,6 +177,8 @@ const esc = value => String(value)
   .replaceAll('&','&amp;').replaceAll('"','&quot;')
   .replaceAll('<','&lt;').replaceAll('>','&gt;');
 
+const writeOutput = (path, contents) => writeFile(path, contents, { flag:'w' });
+
 function alternates(path='') {
   return `${langs.map(lang => `<link rel="alternate" hreflang="${lang}" href="${origin}/${lang}/${path}">`).join('')}<link rel="alternate" hreflang="x-default" href="${origin}/en/${path}">`;
 }
@@ -243,11 +245,11 @@ function home(lang) {
       <h2>${c.approachTitle}</h2>
       <div class="approach__copy"><p>${c.approach}</p><p class="approach__close">${c.approachClose}</p></div>
     </section>
-    <section class="section" id="work">
+    <section class="section">
       <p class="eyebrow"><span>§05</span><span>${c.offersTitle}</span></p><h2>${c.offersTitle}</h2>
       <div class="offers">${[c.intervention,c.advisory].map((offer,index) => `<article class="offer"><span class="num">0${index+1}</span><h3>${offer.name}</h3><p>${offer.desc}</p><p class="offer__price">${offer.price}</p></article>`).join('')}</div>
     </section>
-    <section class="section decisions" id="proof">
+    <section class="section decisions">
       <p class="eyebrow"><span>§06</span><span>${c.decisionsTitle}</span></p><h2>${c.decisionsTitle}</h2>
       <div class="decisions__list">${decisions}</div>
     </section>
@@ -284,10 +286,10 @@ function contact(lang) {
 for (const lang of langs) {
   await mkdir(lang,{recursive:true});
   await mkdir(`${lang}/contact`,{recursive:true});
-  await writeFile(`${lang}/index.html`,home(lang));
-  await writeFile(`${lang}/contact/index.html`,contact(lang));
+  await writeOutput(`${lang}/index.html`,home(lang));
+  await writeOutput(`${lang}/contact/index.html`,contact(lang));
 }
 
-await writeFile('index.html',`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,follow"><title>Oriol Ibars</title>${alternates()}<script defer src="/assets/redirect.js"></script><noscript><meta http-equiv="refresh" content="0;url=/en/"></noscript></head><body><p><a href="/ca/">Català</a> · <a href="/es/">Castellano</a> · <a href="/en/">English</a></p></body></html>`);
-await writeFile('sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${['','contact/'].flatMap(path => langs.map(lang => `<url><loc>${origin}/${lang}/${path}</loc>${langs.map(alt => `<xhtml:link rel="alternate" hreflang="${alt}" href="${origin}/${alt}/${path}"/>`).join('')}<xhtml:link rel="alternate" hreflang="x-default" href="${origin}/en/${path}"/></url>`)).join('')}</urlset>`);
-await writeFile('robots.txt',`User-agent: *\nAllow: /\nSitemap: ${origin}/sitemap.xml\n`);
+await writeOutput('index.html',`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,follow"><title>Oriol Ibars</title>${alternates()}<script defer src="/assets/redirect.js"></script><noscript><meta http-equiv="refresh" content="0;url=/en/"></noscript></head><body><p><a href="/ca/">Català</a> · <a href="/es/">Castellano</a> · <a href="/en/">English</a></p></body></html>`);
+await writeOutput('sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${['','contact/'].flatMap(path => langs.map(lang => `<url><loc>${origin}/${lang}/${path}</loc>${langs.map(alt => `<xhtml:link rel="alternate" hreflang="${alt}" href="${origin}/${alt}/${path}"/>`).join('')}<xhtml:link rel="alternate" hreflang="x-default" href="${origin}/en/${path}"/></url>`)).join('')}</urlset>`);
+await writeOutput('robots.txt',`User-agent: *\nAllow: /\nSitemap: ${origin}/sitemap.xml\n`);
