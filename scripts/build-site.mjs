@@ -84,7 +84,7 @@ const copy = {
       'Cuando hay que decidir qué parar, replantear o priorizar.',
       'Antes o después de una inversión o due diligence.'
     ],
-    approachTitle:'Llego. Formo una opinión. <em>Me voy.</em>',
+    approachTitle:'Llego. analizo, priorizo. <em>Me voy.</em>',
     approach:'Hablo con quien tenga algo que decir, miro los datos que importan y confronto las decisiones. No monto un equipo alrededor del problema ni convierto la decisión en seis meses de consultoría.',
     approachClose:'Cuando está claro qué mantener, qué parar y qué decidir, me voy. Tu equipo ya sabe ejecutar.',
     offersTitle:'Dos formas de trabajar',
