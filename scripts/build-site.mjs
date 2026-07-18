@@ -30,7 +30,7 @@ const copy = {
       'Quan cal decidir què aturar, replantejar o prioritzar.',
       'Abans o després d’una inversió o due diligence.'
     ],
-    approachTitle:'Arribo. Em formo una opinió. <em>Marxo.</em>',
+    approachTitle:'Arribo. Analitzo i prioritzo. <em>Marxo.</em>',
     approach:'Parlo amb qui té alguna cosa a dir, miro les dades que importen i confronto les decisions. No munto un equip al voltant del problema ni converteixo la decisió en sis mesos de consultoria.',
     approachClose:'Quan és clar què mantenir, què aturar i què decidir, marxo. El teu equip ja sap executar.',
     offersTitle:'Dues formes de treballar',
@@ -84,7 +84,7 @@ const copy = {
       'Cuando hay que decidir qué parar, replantear o priorizar.',
       'Antes o después de una inversión o due diligence.'
     ],
-    approachTitle:'Llego. analizo, priorizo. <em>Me voy.</em>',
+    approachTitle:'Llego. Analizo y priorizo. <em>Me voy.</em>',
     approach:'Hablo con quien tenga algo que decir, miro los datos que importan y confronto las decisiones. No monto un equipo alrededor del problema ni convierto la decisión en seis meses de consultoría.',
     approachClose:'Cuando está claro qué mantener, qué parar y qué decidir, me voy. Tu equipo ya sabe ejecutar.',
     offersTitle:'Dos formas de trabajar',
@@ -138,7 +138,7 @@ const copy = {
       'When you need to decide what to stop, rethink or prioritise.',
       'Before or after an investment or due diligence.'
     ],
-    approachTitle:'I come in. Form a view. <em>Then leave.</em>',
+    approachTitle:'I come in. I analyse and prioritise. <em>Then I leave.</em>',
     approach:'I speak to the people with something useful to say, look at the data that matters and challenge the decisions. I do not build a team around the problem or turn one decision into six months of consulting.',
     approachClose:'Once it is clear what stays, what stops and what needs deciding, I leave. Your team already knows how to execute.',
     offersTitle:'Two ways to work together',
