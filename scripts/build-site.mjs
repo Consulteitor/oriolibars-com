@@ -201,6 +201,9 @@ function nav(lang) {
 
 function head(lang, title, description, path='') {
   return `<!doctype html><html lang="${lang}" data-page="${path}"><head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YMDXPSY12W"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YMDXPSY12W');</script>
     <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
     <title>${esc(title)}</title><meta name="description" content="${esc(description)}">
     <link rel="canonical" href="${origin}/${lang}/${path}">${alternates(path)}
@@ -290,6 +293,6 @@ for (const lang of langs) {
   await writeOutput(`${lang}/contact/index.html`,contact(lang));
 }
 
-await writeOutput('index.html',`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,follow"><title>Oriol Ibars</title>${alternates()}<script defer src="/assets/redirect.js"></script><noscript><meta http-equiv="refresh" content="0;url=/en/"></noscript></head><body><p><a href="/ca/">Català</a> · <a href="/es/">Castellano</a> · <a href="/en/">English</a></p></body></html>`);
+await writeOutput('index.html',`<!doctype html><html lang="en"><head><script async src="https://www.googletagmanager.com/gtag/js?id=G-YMDXPSY12W"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-YMDXPSY12W');</script><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,follow"><title>Oriol Ibars</title>${alternates()}<script defer src="/assets/redirect.js"></script><noscript><meta http-equiv="refresh" content="0;url=/en/"></noscript></head><body><p><a href="/ca/">Català</a> · <a href="/es/">Castellano</a> · <a href="/en/">English</a></p></body></html>`);
 await writeOutput('sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">${['','contact/'].flatMap(path => langs.map(lang => `<url><loc>${origin}/${lang}/${path}</loc>${langs.map(alt => `<xhtml:link rel="alternate" hreflang="${alt}" href="${origin}/${alt}/${path}"/>`).join('')}<xhtml:link rel="alternate" hreflang="x-default" href="${origin}/en/${path}"/></url>`)).join('')}</urlset>`);
 await writeOutput('robots.txt',`User-agent: *\nAllow: /\nSitemap: ${origin}/sitemap.xml\n`);
