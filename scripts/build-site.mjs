@@ -37,12 +37,12 @@ const copy = {
     intervention:{
       name:'Intervenció estratègica',
       desc:'Una mirada independent davant d’una decisió digital important. Entro, aconsegueixo el context necessari i poso a prova el problema, la inversió i les prioritats actives.',
-      price:'Les intervencions solen situar-se entre 20.000 i 30.000 €, segons la decisió i el context.'
+      price:'Ho parlem. Ho valorem.'
     },
     advisory:{
       name:'Advisory privat',
       desc:'Una relació semestral per a decisions recurrents. No és suport il·limitat, una bossa d’hores, execució ni un CPO fraccional. Treballes directament amb mi.',
-      price:'Les relacions d’advisory són semestrals i comencen en 36.000 €.'
+      price:'Ho parlem. Ho valorem.'
     },
     decisionsTitle:'Algunes decisions en què he intervingut',
     labels:['El que semblava','El que estava passant','La decisió','El resultat'],
@@ -91,12 +91,12 @@ const copy = {
     intervention:{
       name:'Intervención estratégica',
       desc:'Una mirada independiente ante una decisión digital importante. Entro, consigo el contexto necesario y pongo a prueba el problema, la inversión y las prioridades activas.',
-      price:'Las intervenciones suelen situarse entre 20.000 y 30.000 €, según la decisión y el contexto.'
+      price:'Lo hablamos. Lo valoramos.'
     },
     advisory:{
       name:'Advisory privado',
       desc:'Una relación semestral para decisiones recurrentes. No es soporte ilimitado, una bolsa de horas, ejecución ni un CPO fraccional. Trabajas directamente conmigo.',
-      price:'Las relaciones de advisory son semestrales y empiezan en 36.000 €.'
+      price:'Lo hablamos. Lo valoramos.'
     },
     decisionsTitle:'Algunas decisiones en las que he intervenido',
     labels:['Lo que parecía','Lo que estaba pasando','La decisión','El resultado'],
@@ -145,12 +145,12 @@ const copy = {
     intervention:{
       name:'Strategic intervention',
       desc:'An independent view around an important digital decision. I come in, get the context I need and test the problem, the investment and the active priorities.',
-      price:'Strategic interventions typically range from €20,000 to €30,000, depending on the decision and context.'
+      price:'We’ll talk it through. We’ll size it.'
     },
     advisory:{
       name:'Private advisory',
       desc:'A six-month relationship for recurring decisions. It is not unlimited support, a block of hours, execution or a fractional CPO role. You work directly with me.',
-      price:'Advisory relationships run for six months and start at €36,000.'
+      price:'We’ll talk it through. We’ll size it.'
     },
     decisionsTitle:'A few decisions I have been involved in',
     labels:['What it looked like','What was really happening','The decision','The outcome'],
