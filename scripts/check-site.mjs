@@ -4,7 +4,8 @@ const locales = ['ca', 'es', 'en'];
 const pages = ['', 'contact/'];
 const assetVersion = '20260718';
 const forbiddenOffers = [
-  '1.500€', '2.500€/mes', '10.000€', 'Advisory mensual',
+  '1.500€', '2.500€/mes', '10.000€', '20.000', '30.000', '36.000',
+  '€20,000', '€30,000', '€36,000', 'Advisory mensual',
   'Proyectos concretos', 'Primera mirada estratégica', '72 horas'
 ];
 const mixedLanguage = {
