@@ -13,12 +13,12 @@ const copy = {
     nav:{ moments:'Quan té sentit', work:'Com treballo', proof:'Experiència', contact:'Parlem' },
     title:'Oriol Ibars — Criteri independent per a decisions digitals importants',
     description:'Ajudo CEOs i equips directius a prendre millors decisions sobre productes i negocis digitals quan equivocar-se és car.',
-    eyebrow:'Assessor independent · Producte i negoci digital',
+    eyebrow:'Assessor independent · Producte, negoci digital i IA',
     hero:'Entro abans que una decisió digital cara es converteixi en <em>mesos de feina equivocada.</em>',
-    sub:'Criteri independent per a CEOs i equips directius que han de decidir què mereix més diners, més equip —i què cal aturar.',
+    sub:'Criteri independent per a CEOs i equips directius que han de decidir on invertir, què construir, on la IA té sentit i què cal aturar.',
     signal:'25 anys · Opinió independent · Criteri no delegat',
     tensionTitle:'El problema no sempre és executar. A vegades és <em>continuar.</em>',
-    tension:'Un equip pot estar ocupat, complir el roadmap i continuar resolent el problema equivocat. No omplo el roadmap. Ajudo a decidir si mereix existir.',
+    tension:'Un equip pot estar ocupat, complir el roadmap i continuar resolent el problema equivocat. No omplo el roadmap. Ajudo a decidir què cal aturar, què val la pena construir i quines oportunitats no estem veient.',
     momentsTitle:'Quan té sentit que entri',
     moments:[
       'Abans de comprometre una inversió digital important.',
@@ -28,7 +28,8 @@ const copy = {
       'Quan el CEO sospita que s’està resolent el problema equivocat.',
       'Abans d’un redisseny, una migració o una nova plataforma.',
       'Quan cal decidir què aturar, replantejar o prioritzar.',
-      'Abans o després d’una inversió o due diligence.'
+      'Abans o després d’una inversió o due diligence.',
+      'Quan la IA entra a l’agenda però ningú té clar per què.'
     ],
     approachTitle:'Arribo. Analitzo i prioritzo. <em>Marxo.</em>',
     approach:'Parlo amb qui té alguna cosa a dir, miro les dades que importen i confronto les decisions. No munto un equip al voltant del problema ni converteixo la decisió en sis mesos de consultoria.',
@@ -67,12 +68,12 @@ const copy = {
     nav:{ moments:'Cuándo tiene sentido', work:'Cómo trabajo', proof:'Experiencia', contact:'Hablemos' },
     title:'Oriol Ibars — Criterio independiente para decisiones digitales importantes',
     description:'Ayudo a CEOs y equipos directivos a tomar mejores decisiones sobre productos y negocios digitales cuando equivocarse es caro.',
-    eyebrow:'Asesor independiente · Producto y negocio digital',
+    eyebrow:'Asesor independiente · Producto, negocio digital e IA',
     hero:'Entro antes de que una decisión digital cara se convierta en <em>meses de trabajo equivocado.</em>',
-    sub:'Criterio independiente para CEOs y equipos directivos que deben decidir qué merece más dinero, más equipo —y qué hay que parar.',
+    sub:'Criterio independiente para CEOs y equipos directivos que deben decidir dónde invertir, qué construir, dónde tiene sentido la IA y qué hay que parar.',
     signal:'25 años · Opinión independiente · Criterio no delegado',
     tensionTitle:'El problema no siempre es ejecutar. A veces es <em>seguir.</em>',
-    tension:'Un equipo puede estar ocupado, cumplir el roadmap y seguir resolviendo el problema equivocado. No lleno el roadmap. Ayudo a decidir si merece existir.',
+    tension:'Un equipo puede estar ocupado, cumplir el roadmap y seguir resolviendo el problema equivocado. No lleno el roadmap. Ayudo a decidir qué hay que parar, qué merece la pena construir y qué oportunidades estamos pasando por alto.',
     momentsTitle:'Cuándo tiene sentido que entre',
     moments:[
       'Antes de comprometer una inversión digital importante.',
@@ -82,7 +83,8 @@ const copy = {
       'Cuando el CEO sospecha que se está resolviendo el problema equivocado.',
       'Antes de un rediseño, una migración o una nueva plataforma.',
       'Cuando hay que decidir qué parar, replantear o priorizar.',
-      'Antes o después de una inversión o due diligence.'
+      'Antes o después de una inversión o due diligence.',
+      'Cuando la IA entra en la agenda pero nadie tiene claro para qué.'
     ],
     approachTitle:'Llego. Analizo y priorizo. <em>Me voy.</em>',
     approach:'Hablo con quien tenga algo que decir, miro los datos que importan y confronto las decisiones. No monto un equipo alrededor del problema ni convierto la decisión en seis meses de consultoría.',
@@ -121,12 +123,12 @@ const copy = {
     nav:{ moments:'When to bring me in', work:'How I work', proof:'Experience', contact:'Let’s talk' },
     title:'Oriol Ibars — Independent judgement for important digital decisions',
     description:'I help CEOs and leadership teams make better product and digital business decisions when getting it wrong is expensive.',
-    eyebrow:'Independent advisor · Product and digital business',
+    eyebrow:'Independent advisor · Product, digital business and AI',
     hero:'I step in before an expensive digital decision becomes <em>months of work in the wrong direction.</em>',
-    sub:'Independent judgement for CEOs and leadership teams deciding what deserves more money, more people —and what should stop.',
+    sub:'Independent judgement for CEOs and leadership teams deciding where to invest, what to build, where AI makes sense and what needs to stop.',
     signal:'25 years · Independent view · Judgement never delegated',
     tensionTitle:'The problem is not always execution. Sometimes it is <em>continuing.</em>',
-    tension:'A team can stay busy, deliver the roadmap and still solve the wrong problem. I do not build the roadmap. I help decide whether it deserves to exist.',
+    tension:'A team can stay busy, deliver the roadmap and still solve the wrong problem. I do not add to the roadmap. I help decide what needs to stop, what is worth building and which opportunities we are missing.',
     momentsTitle:'When it makes sense to bring me in',
     moments:[
       'Before committing a significant digital investment.',
@@ -136,7 +138,8 @@ const copy = {
       'When the CEO suspects the team is solving the wrong problem.',
       'Before a redesign, migration or new platform.',
       'When you need to decide what to stop, rethink or prioritise.',
-      'Before or after an investment or due diligence.'
+      'Before or after an investment or due diligence.',
+      'When AI is on the agenda but no one is quite sure why.'
     ],
     approachTitle:'I come in. I analyse and prioritise. <em>Then I leave.</em>',
     approach:'I speak to the people with something useful to say, look at the data that matters and challenge the decisions. I do not build a team around the problem or turn one decision into six months of consulting.',
